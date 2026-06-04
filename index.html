@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anand Trades – Wholesale General Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Yatra+One&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--saffron:#FF6B00;--deep-red:#C0392B;--gold:#F4A82D;--cream:#FFF8EE;--dark:#1A0A00;--brown:#5C2A00;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--cream);font-family:'Poppins',sans-serif;color:var(--dark);overflow-x:hidden;}
+
+/* LANG BAR */
+#langBar{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(26,10,0,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:10px 20px;border-bottom:1px solid rgba(244,168,45,0.25);}
+.lb-name{font-family:'Playfair Display',serif;color:var(--gold);font-size:0.9rem;letter-spacing:1px;}
+.lb-toggle{display:flex;background:rgba(255,255,255,0.05);border:1px solid rgba(244,168,45,0.3);border-radius:30px;overflow:hidden;}
+.lb-btn{padding:7px 20px;font-size:0.82rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:rgba(255,255,255,0.45);font-family:'Poppins',sans-serif;letter-spacing:1px;transition:all 0.25s;}
+.lb-btn.on{background:linear-gradient(135deg,var(--saffron),var(--gold));color:#fff;}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,#1A0A00 0%,#3B1200 50%,#5C2A00 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:110px 20px 60px;}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(244,168,45,0.12);animation:spin linear infinite;}
+.ring1{width:700px;height:700px;top:50%;left:50%;transform:translate(-50%,-50%);animation-duration:60s;}
+.ring2{width:520px;height:520px;top:50%;left:50%;transform:translate(-50%,-50%);border-color:rgba(255,107,0,0.10);animation-duration:40s;animation-direction:reverse;}
+.ring3{width:360px;height:360px;top:50%;left:50%;transform:translate(-50%,-50%);animation-duration:25s;border-color:rgba(244,168,45,0.08);}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg);}}
+.logo-wrap{position:relative;z-index:10;text-align:center;animation:fadeUp 1s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.emblem{width:180px;height:180px;margin:0 auto 20px;filter:drop-shadow(0 0 30px rgba(244,168,45,0.4));animation:glow 3s ease-in-out infinite;}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 30px rgba(244,168,45,0.4));}50%{filter:drop-shadow(0 0 55px rgba(255,107,0,0.65));}}
+.brand-name{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,8vw,5.5rem);font-weight:900;line-height:1;background:linear-gradient(135deg,#F4A82D 0%,#FF6B00 40%,#F4A82D 80%,#FFD580 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.brand-sub{font-family:'Yatra One',cursive;font-size:clamp(1rem,3vw,1.6rem);color:#F4A82D;letter-spacing:6px;margin-top:8px;opacity:0.85;}
+.gold-line{width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:16px auto;}
+.brand-tag{font-size:0.82rem;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.4);font-weight:300;}
+.badges{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:28px;position:relative;z-index:10;}
+.badge{background:rgba(244,168,45,0.1);border:1px solid rgba(244,168,45,0.3);color:var(--gold);padding:7px 18px;border-radius:40px;font-size:0.76rem;letter-spacing:2px;text-transform:uppercase;}
+.scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:5px;color:rgba(255,255,255,0.25);font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;animation:bob 2s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(8px);}}
+
+/* SECTIONS */
+.sec{padding:72px 20px;}
+.sec.cream{background:var(--cream);}
+.sec.white{background:#fff9f4;}
+.sec.dark{background:linear-gradient(160deg,#1A0A00,#3B1200);}
+.sec::before{content:'';display:block;}
+.sec.cream{position:relative;}
+.sec.cream::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--deep-red),var(--saffron),var(--gold),var(--saffron),var(--deep-red));}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);text-align:center;margin-bottom:6px;color:var(--brown);}
+.sec.dark .s-title{color:var(--gold);}
+.s-title span{color:var(--saffron);}
+.s-sub{text-align:center;color:#999;font-size:0.82rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:40px;}
+.sec.dark .s-sub{color:rgba(255,255,255,0.35);}
+
+/* INFO CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px;max-width:920px;margin:0 auto;}
+.card{background:#fff;border-radius:16px;padding:30px 22px;text-align:center;box-shadow:0 4px 22px rgba(92,42,0,0.07);border:1px solid rgba(244,168,45,0.15);transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden;}
+.card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--saffron),var(--gold));transform:scaleX(0);transition:transform .3s;}
+.card:hover{transform:translateY(-6px);box-shadow:0 12px 38px rgba(92,42,0,0.14);}
+.card:hover::after{transform:scaleX(1);}
+.c-icon{font-size:2.3rem;margin-bottom:12px;}
+.c-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--brown);margin-bottom:7px;}
+.c-text{font-size:0.83rem;color:#777;line-height:1.7;}
+
+/* CONTACT STRIP */
+.cstrip{background:linear-gradient(90deg,#C0392B,#FF6B00,#F4A82D,#FF6B00,#C0392B);padding:30px 20px;}
+.cstrip-inner{max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:22px;justify-content:center;align-items:center;}
+.citem{text-align:center;color:#fff;}
+.citem-icon{font-size:1.5rem;margin-bottom:4px;}
+.citem-val{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;}
+.citem-lbl{font-size:0.7rem;letter-spacing:2px;opacity:0.82;text-transform:uppercase;margin-top:2px;}
+.cdiv{width:1px;height:48px;background:rgba(255,255,255,0.25);}
+/* Action buttons in contact strip */
+.citem-btn{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:8px 16px;border-radius:30px;font-size:0.78rem;font-weight:600;text-decoration:none;letter-spacing:0.5px;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s;}
+.citem-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.3);}
+.wa-btn{background:#25D366;color:#fff;}
+.email-btn{background:#fff;color:#C0392B;}
+.map-btn{background:#4285F4;color:#fff;}
+.citem-btn svg{width:17px;height:17px;flex-shrink:0;}
+
+/* GALLERY TOGGLE BTN */
+.gbtn-wrap{text-align:center;margin-bottom:36px;}
+.gbtn{display:inline-flex;align-items:center;gap:9px;border:none;border-radius:50px;padding:13px 30px;font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;letter-spacing:1px;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 22px rgba(255,107,0,0.3);}
+.gbtn.prod-btn{background:linear-gradient(135deg,var(--saffron),var(--gold));color:#fff;}
+.gbtn.brand-btn{background:linear-gradient(135deg,rgba(244,168,45,0.15),var(--gold));color:#1A0A00;border:1px solid rgba(244,168,45,0.4);}
+.gbtn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,107,0,0.45);}
+
+/* PRODUCT GRID */
+.pgrid{display:none;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:14px;max-width:1040px;margin:0 auto;}
+.pgrid.open{display:grid;}
+.pcard{border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,0.13);transition:transform .3s,box-shadow .3s;cursor:pointer;}
+.pcard:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 10px 28px rgba(0,0,0,0.2);}
+.pcard-img{width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden;}
+.pcard-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+.pcard:hover .pcard-img img{transform:scale(1.08);}
+.pcard-img .fallback-emoji{font-size:3rem;z-index:1;}
+.pcard-info{padding:9px 11px;background:#fff;}
+.pcard-name{font-size:0.77rem;font-weight:600;color:var(--dark);line-height:1.3;}
+.pcard-cat{font-size:0.65rem;color:#aaa;margin-top:2px;}
+
+/* BRAND GRID */
+.bgrid{display:none;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:18px;max-width:1040px;margin:0 auto;}
+.bgrid.open{display:grid;}
+.bcard{border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .3s,box-shadow .3s;border:2px solid transparent;}
+.bcard:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,0.35);border-color:var(--gold);}
+.bcard-img-wrap{width:100%;height:110px;overflow:hidden;position:relative;}
+.bcard-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+.bcard:hover .bcard-img-wrap img{transform:scale(1.1);}
+.bcard-img-wrap .bfallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.4rem;}
+.bcard-body{padding:10px 12px;}
+.bcard-name{font-weight:700;font-size:0.84rem;margin-bottom:3px;}
+.bcard-tag{font-size:0.68rem;opacity:0.65;}
+
+/* CHAT */
+.chat-sec{padding:72px 20px;background:linear-gradient(160deg,#1A0A00,#3B1200);position:relative;overflow:hidden;}
+.chat-sec::before{content:'🏪';position:absolute;font-size:280px;opacity:0.03;right:-50px;top:50%;transform:translateY(-50%);}
+.chat-box{max-width:680px;margin:0 auto;background:rgba(255,255,255,0.04);border:1px solid rgba(244,168,45,0.22);border-radius:20px;overflow:hidden;backdrop-filter:blur(10px);}
+.chat-head{background:linear-gradient(90deg,rgba(255,107,0,0.2),rgba(244,168,45,0.14));padding:15px 22px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(244,168,45,0.15);}
+.chat-av{width:40px;height:40px;background:linear-gradient(135deg,var(--saffron),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.chat-hname{color:var(--gold);font-weight:600;font-size:0.93rem;}
+.chat-hstat{color:#5eff8a;font-size:0.7rem;display:flex;align-items:center;gap:5px;}
+.dot{width:6px;height:6px;background:#5eff8a;border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.msgs{height:340px;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:13px;scroll-behavior:smooth;}
+.msgs::-webkit-scrollbar{width:3px;}
+.msgs::-webkit-scrollbar-thumb{background:rgba(244,168,45,0.3);border-radius:2px;}
+.msg{display:flex;gap:9px;animation:msgIn .3s ease;}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.msg.u{flex-direction:row-reverse;}
+.mav{width:30px;height:30px;border-radius:50%;background:rgba(244,168,45,0.15);display:flex;align-items:center;justify-content:center;font-size:0.82rem;flex-shrink:0;border:1px solid rgba(244,168,45,0.25);}
+.msg.u .mav{background:rgba(255,107,0,0.18);border-color:rgba(255,107,0,0.28);}
+.mbub{max-width:76%;padding:10px 15px;border-radius:15px;font-size:0.86rem;line-height:1.6;}
+.msg.b .mbub{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.88);border:1px solid rgba(244,168,45,0.15);border-top-left-radius:3px;}
+.msg.u .mbub{background:linear-gradient(135deg,rgba(255,107,0,0.38),rgba(244,168,45,0.28));color:#fff;border-top-right-radius:3px;text-align:right;}
+.tdots{display:flex;gap:4px;align-items:center;padding:3px 0;}
+.tdots span{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:tb 1.2s infinite;}
+.tdots span:nth-child(2){animation-delay:0.2s;}
+.tdots span:nth-child(3){animation-delay:0.4s;}
+@keyframes tb{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-7px);}}
+.qbtns{padding:11px 18px;display:flex;flex-wrap:wrap;gap:7px;border-top:1px solid rgba(244,168,45,0.1);}
+.qbtn{background:rgba(244,168,45,0.1);border:1px solid rgba(244,168,45,0.22);color:var(--gold);padding:6px 13px;border-radius:20px;font-size:0.74rem;cursor:pointer;transition:all .2s;font-family:'Poppins',sans-serif;}
+.qbtn:hover{background:rgba(244,168,45,0.2);}
+.cinput-row{display:flex;gap:9px;padding:14px 18px;background:rgba(0,0,0,0.2);border-top:1px solid rgba(244,168,45,0.1);}
+.cinput{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(244,168,45,0.2);border-radius:11px;padding:11px 15px;color:#fff;font-family:'Poppins',sans-serif;font-size:0.86rem;outline:none;transition:border-color .2s;}
+.cinput::placeholder{color:rgba(255,255,255,0.23);}
+.cinput:focus{border-color:rgba(244,168,45,0.5);}
+.sbtn{background:linear-gradient(135deg,var(--saffron),var(--gold));border:none;border-radius:11px;width:46px;height:46px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s;flex-shrink:0;}
+.sbtn:hover{transform:scale(1.08);}
+.sbtn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.sbtn svg{width:19px;fill:#fff;}
+
+/* FOOTER */
+footer{background:var(--dark);padding:38px 20px;text-align:center;color:rgba(255,255,255,0.28);font-size:0.78rem;letter-spacing:2px;}
+.ft-brand{color:var(--gold);font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:7px;}
+
+/* ── FLOATING WHATSAPP + SHARE ── */
+.float-cluster{position:fixed;bottom:24px;right:20px;z-index:9990;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+.float-share-btn{display:inline-flex;align-items:center;gap:7px;background:#fff;border:2px solid var(--gold);color:var(--brown);border-radius:25px;padding:8px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.15);font-family:'Poppins',sans-serif;transition:all .25s;text-decoration:none;}
+.float-share-btn:hover{background:var(--gold);color:#fff;transform:translateY(-2px);}
+.float-share-btn svg{width:15px;height:15px;flex-shrink:0;}
+.float-wa-wrap{position:relative;display:flex;align-items:center;gap:10px;}
+.float-wa-pill{background:#25D366;color:#fff;border-radius:22px;padding:8px 14px;font-size:0.72rem;font-weight:600;font-family:'Poppins',sans-serif;white-space:nowrap;box-shadow:0 4px 14px rgba(37,211,102,0.45);animation:pillPop .4s ease .8s both;letter-spacing:0.3px;}
+@keyframes pillPop{from{opacity:0;transform:translateX(10px);}to{opacity:1;transform:translateX(0);}}
+.float-wa-btn{width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 22px rgba(37,211,102,0.55);cursor:pointer;text-decoration:none;transition:transform .25s,box-shadow .25s;flex-shrink:0;}
+.float-wa-btn:hover{transform:scale(1.1) rotate(-5deg);box-shadow:0 8px 32px rgba(37,211,102,0.75);}
+.float-wa-btn svg{width:30px;height:30px;fill:#fff;}
+.float-wa-btn::after{content:'';position:absolute;width:60px;height:60px;border-radius:50%;border:2px solid rgba(37,211,102,0.4);animation:waPulse 2s infinite;pointer-events:none;}
+@keyframes waPulse{0%{transform:scale(1);opacity:0.8;}100%{transform:scale(1.7);opacity:0;}}
+
+/* ── MAP SECTION ── */
+.map-sec{padding:72px 20px;background:#fff9f4;position:relative;}
+.map-sec::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--deep-red),var(--saffron),var(--gold),var(--saffron),var(--deep-red));}
+.map-frame-wrap{max-width:900px;margin:0 auto;}
+.map-frame{width:100%;height:380px;border:none;border-radius:18px;box-shadow:0 8px 32px rgba(92,42,0,0.13);display:block;}
+.map-actions{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap;}
+.map-act-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:30px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:transform .2s,box-shadow .2s;font-family:'Poppins',sans-serif;cursor:pointer;border:none;}
+.map-act-btn:hover{transform:translateY(-3px);}
+.dir-btn{background:linear-gradient(135deg,#4285F4,#34A853);color:#fff;box-shadow:0 4px 16px rgba(66,133,244,0.4);}
+.dir-btn:hover{box-shadow:0 8px 26px rgba(66,133,244,0.6);}
+.wa-order-btn{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 4px 16px rgba(37,211,102,0.4);}
+.wa-order-btn:hover{box-shadow:0 8px 26px rgba(37,211,102,0.6);}
+.map-act-btn svg{width:18px;height:18px;flex-shrink:0;fill:currentColor;}
+
+/* ── UPI PAYMENT BAR ── */
+.upi-bar{background:linear-gradient(135deg,#0f0600,#2a0d00);padding:36px 20px;border-top:1px solid rgba(244,168,45,0.1);}
+.upi-inner{max-width:720px;margin:0 auto;text-align:center;}
+.upi-title{color:var(--gold);font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:4px;}
+.upi-sub{color:rgba(255,255,255,0.3);font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px;}
+.upi-logos{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;align-items:stretch;}
+.upi-card{display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;cursor:pointer;transition:transform .22s;}
+.upi-card:hover{transform:translateY(-4px) scale(1.04);}
+.upi-card:active{transform:scale(0.97);}
+.upi-badge{display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:12px;font-weight:800;font-size:1rem;letter-spacing:0.3px;min-width:120px;justify-content:center;}
+.phonepe-badge{background:#5F259F;color:#fff;box-shadow:0 4px 16px rgba(95,37,159,0.5);}
+.gpay-badge{background:#fff;color:#3c4043;box-shadow:0 4px 16px rgba(255,255,255,0.15);}
+.paytm-badge{background:#00B9F1;color:#fff;box-shadow:0 4px 16px rgba(0,185,241,0.4);}
+.upi-name{color:rgba(255,255,255,0.38);font-size:0.65rem;letter-spacing:1.5px;text-transform:uppercase;}
+.upi-accepted{display:inline-flex;align-items:center;gap:6px;margin-top:18px;color:rgba(255,255,255,0.25);font-size:0.7rem;letter-spacing:1px;}
+.upi-accepted::before,.upi-accepted::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.1);width:40px;}
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE BAR -->
+<div id="langBar">
+  <div class="lb-name">&#127978; Anand Trades</div>
+  <div class="lb-toggle">
+    <button class="lb-btn on" id="btnEN" onclick="setLang('en')">EN</button>
+    <button class="lb-btn" id="btnHI" onclick="setLang('hi')">&#2361;&#2367;&#2306;</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="ring ring1"></div><div class="ring ring2"></div><div class="ring ring3"></div>
+  <div class="logo-wrap">
+    <svg class="emblem" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F4A82D"/><stop offset="50%" stop-color="#FF6B00"/><stop offset="100%" stop-color="#F4A82D"/></linearGradient>
+        <linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFD580"/><stop offset="100%" stop-color="#FF6B00"/></linearGradient>
+      </defs>
+      <polygon points="90,8 142,34 166,90 142,146 90,172 38,146 14,90 38,34" fill="none" stroke="url(#ga)" stroke-width="2"/>
+      <circle cx="90" cy="90" r="66" fill="none" stroke="url(#ga)" stroke-width="1" stroke-dasharray="6 4"/>
+      <polygon points="90,26 128,48 128,132 90,154 52,132 52,48" fill="rgba(244,168,45,0.07)" stroke="url(#gb)" stroke-width="1.5"/>
+      <path d="M68 118 L90 50 L112 118" stroke="url(#ga)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <line x1="76" y1="96" x2="104" y2="96" stroke="url(#ga)" stroke-width="5" stroke-linecap="round"/>
+      <line x1="58" y1="65" x2="122" y2="65" stroke="url(#gb)" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+      <circle cx="90" cy="18" r="3" fill="#F4A82D"/><circle cx="90" cy="162" r="3" fill="#F4A82D"/>
+      <circle cx="157" cy="90" r="3" fill="#FF6B00"/><circle cx="23" cy="90" r="3" fill="#FF6B00"/>
+    </svg>
+    <div class="brand-name">Anand Trades</div>
+    <div class="brand-sub">&#2310;&#2344;&#2306;&#2342; &#2335;&#2381;&#2352;&#2375;&#2337;&#2381;&#2360;</div>
+    <div class="gold-line"></div>
+    <div class="brand-tag" id="h-tag">Wholesale General Store &middot; Est. 2026</div>
+    <div class="badges">
+      <div class="badge" id="b1">&#128722; Wholesale</div>
+      <div class="badge" id="b2">&#128230; Bulk Orders</div>
+      <div class="badge" id="b3">&#9989; Best Prices</div>
+      <div class="badge" id="b4">&#127969; Local Trust</div>
+    </div>
+  </div>
+  <div class="scroll-cue"><svg viewBox="0 0 24 24" fill="white"><path d="M12 16l-6-6h12z"/></svg><span id="sc-lbl">Scroll</span></div>
+</section>
+
+<!-- INFO CARDS -->
+<section class="sec cream" style="padding-top:80px;">
+  <h2 class="s-title" id="ic-title">Why Choose <span>Anand Trades?</span></h2>
+  <p class="s-sub" id="ic-sub">Your trusted wholesale partner</p>
+  <div class="cards">
+    <div class="card"><div class="c-icon">&#127978;</div><div class="c-title" id="ic1t">Wide Product Range</div><div class="c-text" id="ic1">Groceries, FMCG, chocolates, snacks, tobacco, household &amp; more — all under one roof.</div></div>
+    <div class="card"><div class="c-icon">&#128176;</div><div class="c-title" id="ic2t">Wholesale Rates</div><div class="c-text" id="ic2">Unbeatable bulk pricing for retailers &amp; shopkeepers. Save more, sell more.</div></div>
+    <div class="card"><div class="c-icon">&#9889;</div><div class="c-title" id="ic3t">Fast Delivery</div><div class="c-text" id="ic3">Quick local delivery available. Same-day dispatch for in-stock items within range.</div></div>
+    <div class="card"><div class="c-icon">&#129309;</div><div class="c-title" id="ic4t">New in 2026</div><div class="c-text" id="ic4">Freshly opened with a vision for honest dealing and quality service for the community.</div></div>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<div class="cstrip">
+  <div class="cstrip-inner">
+
+    <!-- WhatsApp -->
+    <div class="citem">
+      <div class="citem-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.934 1.395 5.604L0 24l6.545-1.371A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.032-1.388l-.36-.214-3.733.978.997-3.648-.235-.374A9.791 9.791 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+      </div>
+      <div class="citem-val">+91 72094 90697</div>
+      <div class="citem-lbl" id="cl1">WhatsApp (Satyam Anand)</div>
+      <a class="citem-btn wa-btn" href="https://wa.me/917209490697?text=Namaste%2C%20I%20want%20to%20order%20from%20Anand%20Trades..." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.934 1.395 5.604L0 24l6.545-1.371A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.032-1.388l-.36-.214-3.733.978.997-3.648-.235-.374A9.791 9.791 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+    <div class="cdiv"></div>
+
+    <!-- Call Only -->
+    <div class="citem">
+      <div class="citem-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      </div>
+      <div class="citem-val">+91 98354 35228</div>
+      <div class="citem-lbl" id="cl2">Call Only (Mohan Chaudhary)</div>
+      <a class="citem-btn" style="background:#fff;color:#C0392B;" href="tel:+919835435228">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        Call Now
+      </a>
+    </div>
+    <div class="cdiv"></div>
+
+    <!-- Email -->
+    <div class="citem">
+      <div class="citem-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </div>
+      <div class="citem-val" style="font-size:0.85rem;">anandtrades.info@gmail.com</div>
+      <div class="citem-lbl" id="cl3">Email Us</div>
+      <a class="citem-btn email-btn" href="mailto:anandtrades.info@gmail.com">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Send Email
+      </a>
+    </div>
+    <div class="cdiv"></div>
+
+    <!-- Location -->
+    <div class="citem">
+      <div class="citem-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </div>
+      <div class="citem-val">Patel Chowk, Dhabouli</div>
+      <div class="citem-lbl" id="cl4">Front of New Style Mall</div>
+      <a class="citem-btn map-btn" href="https://maps.app.goo.gl/BEmPcs9hfGyRfpqp7?g_st=aw" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Open in Maps
+      </a>
+    </div>
+    <div class="cdiv"></div>
+
+    <!-- Owner -->
+    <div class="citem">
+      <div class="citem-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      </div>
+      <div class="citem-val">Mohan Chaudhary</div>
+      <div class="citem-lbl" id="cl5">Owner &middot; Est. 2026</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- WHATSAPP CHANNEL + QR CODE SECTION -->
+<div style="background:linear-gradient(135deg,#0f0600,#1a0800);padding:48px 20px;border-top:1px solid rgba(244,168,45,0.1);">
+  <div style="max-width:880px;margin:0 auto;">
+    <h2 class="s-title" style="color:var(--gold);margin-bottom:6px;">Connect &amp; <span style="color:var(--saffron);">Pay</span></h2>
+    <p class="s-sub">Stay updated &amp; order instantly</p>
+    <div style="display:flex;flex-wrap:wrap;gap:28px;justify-content:center;align-items:stretch;margin-top:32px;">
+
+      <!-- WhatsApp Chat -->
+      <a href="https://wa.me/917209490697" target="_blank" rel="noopener"
+         style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.3);border-radius:18px;padding:24px 28px;min-width:180px;transition:transform .25s,box-shadow .25s;"
+         onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 32px rgba(37,211,102,0.3)'"
+         onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.934 1.395 5.604L0 24l6.545-1.371A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.032-1.388l-.36-.214-3.733.978.997-3.648-.235-.374A9.791 9.791 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        <div style="color:#25D366;font-weight:700;font-size:0.95rem;font-family:'Poppins',sans-serif;">WhatsApp Chat</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;">+91 72094 90697</div>
+      </a>
+
+      <!-- WhatsApp Channel -->
+      <a href="https://whatsapp.com/channel/0029Vb8GmmwEKyZCW1sEvq2q" target="_blank" rel="noopener"
+         style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.3);border-radius:18px;padding:24px 28px;min-width:180px;transition:transform .25s,box-shadow .25s;"
+         onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 32px rgba(37,211,102,0.3)'"
+         onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="#25D366"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        <div style="color:#25D366;font-weight:700;font-size:0.95rem;font-family:'Poppins',sans-serif;">WA Channel</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;">Updates &amp; Offers</div>
+      </a>
+
+      <!-- QR Code -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;background:rgba(244,168,45,0.06);border:1px solid rgba(244,168,45,0.25);border-radius:18px;padding:24px 28px;min-width:200px;">
+        <div style="color:var(--gold);font-weight:700;font-size:0.9rem;font-family:'Poppins',sans-serif;letter-spacing:0.5px;">📱 Scan &amp; Pay / Contact</div>
+        <div style="background:#fff;border-radius:12px;padding:8px;display:inline-block;">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAggAAAIICAYAAAAL/BZjAAAAAXNSR0IArs4c6QAAAARzQklUCAgICHwIZIgAACAASURBVHic7N17dCTnfd75532rezBDgAOSGlEiKWIiiSIpkoDuNwqty4lEA5IlxbrYjAdykrUsO14rcZzNcLe1OVR0JNiivdL6kj1eebMbxTPOsZVzvFmvDawVXcyGRYk2KRFDiSLFIQcYzv0KDDAAurve3/5R1ZghC3NTFdA9mO+Hh7cB8PavqqurHlS9F9fd3W0CAAA4i293AQAAoPMQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEBG6Xxf7O3tVX9//1rVgjbZu3evpqam2l2GJGlgYECbN2/O1cbs7KwmJycLqqgzDA4O5m5j165dmpmZydVGJ50TijpuO2XfdpKtW7fq5ptvbncZWGUXOm7d+eZBqFQqGhsbW5XC0DlGR0c1Ojra7jIkSePj47lP2BMTExoaGiqoos4wNzeXu43h4WHVarVcbXTSOaGo47ZT9m0nqVarqlar7S4Dq+xCxy2PGAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABklNbiRe677z5NTk6uxUtdcR544AH19/e3uwxJ0tjYWO42duzYoc9//vO52piZmcldB1bX8PBw7jamp6cLqKSYWkZGRlStVguoJr8itqcIu3bt0vbt29tdxro0MDCgL3zhC6v+OmsSECYnJ1Wr1dbipa44nXQxrFQqudsYHR3lWLkCdNJ7XEQtn/70pzU4OFhANevHzMxMR73PuHQ8YgAAABkEBAAAkEFAAAAAGQQEAACQQUAAAAAZBAQAAJBBQAAAABkEBAAAkEFAAAAAGQQEAACQQUAAAAAZBAQAAJBBQAAAABkEBAAAkEFAAAAAGaV2F3CxKpWKKpVKu8sozPT0tHbs2NHuMgo1Ojqau40i3udO2reddNxu27Ytdy19fX0FVQNcnJGRkXV13NVqNdVqtXaXcVEuq4BQrVbbXUZhJiYmOuYiVpQiAsL4+LgGBwdztdFJ+7aTjtuRkZF2lwBcspGRkdznhE4yOjp62QQEHjEAAIAMAgIAAMggIAAAgAwCAgAAyCAgAACADAICAADIICAAAIAMAgIAAMggIAAAgAwCAgAAyCAgAACADAICAADIICAAAIAMAgIAAMggIAAAgAwCAgAAyCi1uwDgbENDQ7nbqFQqmpubK6Ca9WV4eFi1Wi1XG5VKRWNjY7lr6aT3p6enp90lAB2JOwgAACCDgAAAADIICAAAIIOAAAAAMggIAAAgg4AAAAAyCAgAACCDgAAAADIICAAAIIOAAAAAMggIAAAgg4AAAAAyCAgAACCDgAAAADIICAAAIIOAAAAAMkrtLgDrx9jYWLtLkCRNT09reHi43WV0nMnJyXaXsKyT3p8ijtsdO3bo85//fAHVAJ2DgIDCVCqVdpcgSZqYmFCtVmt3GTiPTnp/ijhuR0dHO2qbgCLwiAEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZJTaXcDFmp6e1sTERLvLKMzk5GS7Syhcp7w/U1NTGhwczN1Op2yPpEK2pwj9/f3tLqEj9ff3y8xytTE7O7suzwt5rbd9Mj093e4SLtplExB27NihHTt2tLsMnMfQ0FC7S5AkVSoVjY+P526np6engGqKUcT2YPU88MADuduYmJjomM9QJ9m+fXu7S7hi8YgBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQEZpLV7kC1/4gmZmZtbipa44/f397S5h2djYWO427rvvPk1OThZQTWcYGRnRtm3bcrczPDycu40HHngg9/Gya9cubd++PXctRRwrO3fu1I4dO3K3U4QijtutW7cWsl+KOFaK0N/fX8j2IKu3t3dNXmdNAsLAwMBavAzarFKp5G5jrQ78tdLX11fIfqnVarnbKCKkz8zMFFJLp+yTokxOTnbMfukUvb2962p7rkQ8YgAAABkEBAAAkEFAAAAAGQQEAACQQUAAAAAZBAQAAJBBQAAAABkEBAAAkEFAAAAAGQQEAACQQUAAAAAZBAQAAJBBQAAAABkEBAAAkEFAAAAAGaXzfXF6elqjo6NrVQvapIh17CUVcqxMT08XUEnnqNVqheyXarWau40HH3xQDz74YK42Oun9qVQqheyXTtFJ59uijlt0tgt9nl13d7etUS3AmqhUKhobG8vdTk9PTwHVFGNubi53G8PDw4WFwbyK2J5O0kn7FigKjxgAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZJTO98VKpaKxsbHcLzI8PKxarZarjWq1qmq1mruWnp6e3G2Mj49rcHAwVxsTExMaGhrqiFpGR0c1Ojqau5b1Zm5urt0lLFtvx20R27PeFHW+XW/7tpOO2yIUcS1bq+3hDgIAAMggIAAAgAwCAgAAyCAgAACADAICAADIICAAAIAMAgIAAMggIAAAgAwCAgAAyCAgAACADAICAADIICAAAIAMAgIAAMggIAAAgAwCAgAAyCAgAACAjFK7C7gcbd++Xb29vbna2Lp1q8bGxnLXsmPHDn3+85/P1UalUimkliLcd999mpycbHcZhdm5c6d27NiRu50i3p/+/v7cbRSlU463ohRx3E5OTmp4eLigivIZGRnRtm3b2l2GpGLOcUWdb4tQq9Vyv89Fbc+FjlsCwk+gqAtYpVLJ3cbo6KhqtVruOoqopQh5g1enmZqayv3+SMUcK51kvW1PEcftzMxMIcdKEfr6+jrmPSriHCd1zjFXq9U6ZnsudNzyiAEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZJTO98WZmRlNTEzkfpGZmZncbRRlcHCw3SVIkvr7+wtrx8xytdHX11dILZ2iqOO2iGOlr6+vkHaK2J4iTE5OtruEwhWxb7du3Zr7c9hp8u6X3t7eQs5zRZzjtm7d2jGfoenp6XaXcNFcd3f3ZXFUV6tVVavVdpeBVTY8PKxardbuMiRJc3Nz7S5hWU9PT7tLKNR627fj4+Md88tHEUZHRzU6OpqrjUqlorGxsYIqymdiYkJDQ0PtLqMwRe3bC51vecQAAAAyCAgAACCDgAAAADIICAAAIIOAAAAAMggIAAAgg4AAAAAyCAgAACCDgAAAADIICAAAIIOAAAAAMggIAAAgg4AAAAAyCAgAACCDgAAAADIICAAAIKN0vi9WKhWNjY2tVS3nNTo6qp6ennaXgVU2Pj6uwcHBXG1MTExoaGgody1FHG/ValXVajV3O0Vg365sbm4udxtFKGrfrjfDw8Oq1Wq52qhUKoW8z51yDarVamtSC3cQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQMZ5RzEAWJmZXdT3LS4u6uTJk2v2euczNzeXu5a5ublCainCpezbzZs3y3t+HwIuBQEBuERmJufcRX3vF7/4RX3xi1/M/ZoX+3rn89GPfjR3G1IxtRThUvbtk08+qZtuummVKwLWFyI1AADIICAAAIAMAgIAAMigDwKwSq699lrdf//9euc736ktW7Zo48aN2rBhg6Ioaks9cQhyziQLMkVq9SRwzq3Yr2C5M6KTQjjTMdE7p+T/kr4Yln7tXO0UJYSgpaUlLS4u6tixY6rVarr//vt1/PjxVXtN4EpGQAAK1t3drZGREX3mM5/R1Vdf3e5ylplzcpIs/dg7F0tnYsLKP2MmJy8vyYKkNNt4kyz9Gefcmoxs8N5r06ZN2rRpk6699lrdcsstuvfee/XZz35WX/nKVzQ7O7vqNQBXEh4xAAXasmWLvvzlL+tzn/tcR4UDSfIWy5nJOcm7IMlkOnOhf770Ky7579hJcbT8x1qOA5b+j3OyNgxu2LRpk+6//3790R/9ka6//vq1LwBYx7iDABSku7tbv/u7v6sPfehD7S5lRU5eQcldAS/JqSSXBoWV7yDYmX85J2cmC5bEisjLmeTkln/UnauZVbZx40a9//3vV1dXlz7+8Y/r1KlTa18EsA5xBwEoyMjIiO655552l3FO1mzIjj0rze5TMFNw6cV+xX4DTpJXkFNwTlGQgsV6an6fnpzdp0aItZwNzNJHF+1VqVT0iU98os1VAOsHAQEowLXXXqvPfOYz2rRpU7tLUXKpbt0ZSP7bZAonplX/9k6Fpx6UQlNOQWZSOF//AXOK0yQw31zUf3niW/o//u4vdHx+NvlZmczs/G2ska6uLt1333267rrr2l0KsC6sySOGnTt3ampqKlcbtVqtkFqq1WruNorYnqKMjIyor68vVxu1Wq2Q/VvEvn3wwQf14IMPdkQt5zI7O6s/+IM/eN6f3X///R3R58AsuSvgJDmZgtzyb/fh2JTCj7+peOmw7Lb3yl/9YjlZ+h0vaCcNF945KZiCl07X6/rR0d16aO/juue2N+u9PW+QnJcpTltJHly0U09Pj37rt35Ln/zkJ5/357//+7+vzZs3r/gznXROKKKW0dHR3G1UKhVVKpWOqGV6erqQNoqo5Urjuru7zxn9K5WKxsbGcr/I8PBwYRf4vObm5nK30UnbMz4+rsHBwVxtjI6OFvLh6ZR9W9Rxey779u3Tbbfd9rw/+973vqdXvepVq/aaF6v1YU76GQQF+WToYWiq8Z0/VvNrvyO3cbP8z/ymyq+qKATJea/oBY8ZTK2g4ZLRCzI9cuQZbf+b31dtz9/r1950rz791hFt6bpG5kxOJpNPAkWb7d+/X7feeuvz/ux802Ovt+O2p6cndxvVajV3WJmYmNDQ0FDuWtA+PGIACrBly5Z2lyApuWvQeqSQhIWgYKb41DGFw0/K1+cVze6X//E3pdMzkvNyK/QecHJyls5x4KQ4xPrB4We058Qhxd7pa08/rO8ceFJNiyVzkjm5JEm0XW9vb7tLANYFAgJQgI0bN7a7hIRJsqDkUn3Ww4PZfXLHnpaTVyOY4ie+pfDcpLzVk8mTMu1YMiTSTM6khsV6emavjs/PqGSRnjt1VF+bfkSHFpJJihruXMMl1165XG53CcC6QEAACrBhw4Z2l3CGhWROAict9wmY2a9wdFpx0xSsJB3bIz0+Js0c0coTGCS9E+SkWEH7Zo/piaNTWoyXFFtZc826/tvTD+vxY88qtjjp89AZ+UClEqO3gSIQEIACtGv65BdKuxbKWZBZUFNO1lySnZhWfPqkmt5Ucl4WN9R48puKDz6uYLGChaSDY/pzJiVTLEsKFvTDw89q15E9akZOVnIKTpo6dUR//uSEDs0f19kPKlpjJ5L2LJlMaQ15z2kNKAKfJGCdCS5SyUwKQbFJ8cn9ak79vaK4IclLoSlzZdmpQ2o+9S01Tx1J+iyYdKb/QtpJ0XnFIdbTc8/p8OLJ5HusKXmn082G/tv0o3r08NPpegxOISQPN86OBGsxDTOA4hEQgPXEJR9qSz/aGyzIH39Wbt+PFMWxvJliF6sRSQqLsqe+LT/1qFyIFZzSRZxa9wOS/genlua16+i05hZPJ30TQiRnkeRNB08d01/uflgn63PpYwa33H9BSoNCpzx7AHBJCAjAOpJcimMF5+RcJMUN2eHd0vxxNU3yzuSdJJVl2qBoZlrx5J+rOXtIQclwxTNrLSSnhyOnT+qpUwcVK5aTV6SyXGySNXU6XtI3pr+vvz/ylOpxI/M4IekGQUAALkcEBGAdSZZNSO4fmPOyxXk1D+1WvV5X0yVrMbjYywWnpjaoHkyN3d+R2/t9RXFTZ8/C2OqHcGDhpPYcP6h0ziSF2GQ+JOszOK/pU4f0le+N65mZA5JLJktylq7NYMstAbjMEBCA9cSkYK2FlILC6ZPyx59VyZlKIflaM/KS1eUU5K2kaGFO4Qd/KZ06qCCv1pAEkxRbrGdOHNDs/En5kFz/LXIyn17045LqoaGH9j+uhw8+qUaIk4cT519FGsBlgIAArCtOZl5BpmCx4rkjsmPTikIzvVYnIxCcDyp5kwtBklP8zHdlex+ThaZil8ye6Czo0Nxxffe5J9SwWM47uSCZS59BWBomFOvQwlHVph7TqaW5ZN0HM8UKyWOLdqwDDSA3AgKwzkSSnPNSY1HRkacULc4o9l7NyClyQSWTvEpJj4NIMjUV5mfV/P5fyM0cSEcdJMMT98we1KMndqvhpKbzZx4XWEkyL/NNyUlLcUMT+x7Tt577npaaS8urPLZjmCOAYhAQgHXEKXn4bwrS7BHZ09+R6vOKWxfrFX/GyUJT7rlH5ab/TqXmkpzzasSxds/s1/6Zo5LpzCiF0JrpoPUvJ3Nez5w6pP/4w69r//yxdOkmL29OsQK9EIDLEAEBWFecFFzyS/vsIYVDP1DTpwsp2cofd3Pl5Df+2YNqfP8vFGYOy2SabZzWrmN7dKqxkNxQiJPJlKI0hCQ/5JNHDfJqWEOPHHhCD+37gZohHUkhU+RXWi8SQKcjIADrjXNSo65w7FnFpw+rEZxkfsVlnaXkCUDwZcVxrPDcpOJnviuZdGD+qB47tFsNqycTIfm07bOHLbrlOZ0lOR2ZP6lv7PmeZpqn5JxkznH/ALhMERCAdcRcMgTRL87J7/+RfHNRXk7e28pLLii9xluQlTYozJ2UHh+XW5rRc/Mn9NThZxXX64q8OzOyIYQzIcGSGRRlJSmUFMv04L5d+qtn/05LzSV55+TppAhclggIwGXOzp61MO1r0FycU3z4x1LckDeTFEvnWY65ZCZvkrNY/tDjWvrRN/XsqSOaiRclhWRVxziS5CUfr9DxMA0Kwem5+cP6f57+tvbOHVcIaX8I7iIAlx3X3d19WXxyq9WqqtVqu8sozMTEhIaGhtpdhqTi9m1PT0/uNsbHxzU4OJirjdXet2aWdNY7y9zc3Kq93sU6uxNiY/pRNf7sXyo+tlteZZlz6RTKK/ycgkwlRdZUcF5lH3TkxjfrN6+/Rf/X3se0EE7Lq6QQl6WoKWdNmVtpxUSTl5fUVN/VW/TZwU/qY7e+Q6WyktkX17AnwguPxSeffFI33XTTRX3vT6KI47YoRWwPVtYJn/MiDQ8Pq1arnfPr3EEA1hmrLymaflT+9Ky860qnO/YKZ624eLbgkt/wm1FJFpK5Dq46NKnuZ/9W1qxL1iVzkotadwLOdaFPF3wKXvtnjugbex7Wvvmjiqy0puEAQDEICECHsvMMTWx9PcvJGvOqP/tdWeNUGgic/LmfLsibl49d8ijABcXBqbexoNcvHNZLwlIyZbIkxXHS3cCtfNpI5j6QzEVq+KC/mX5E39jziJrMgwBclggIwGUqmY3gzHwETk4KsTS7T/GJaQWrq9UDQOaSQQgrNRQiRebkQyzvkwt8HEp625L0/uairorqiqy1UqPTuXo7mrnlxZmcyjqweFJ//dyj+vGJ/QqEBOCyQ0AALlcu/UdrtkIzxfUlNacfl5s9KjUlb0FykUwmZyt3FgxeapZMziJZ7BTUVD0Kut7q+tDSgm5p1mWxZJFPA8J57mr4pqRYCmUthaCHnntcf7P3+8nIBwCXFQIC0KGcc5nOkM/7ekgeQSSX/ZCsfNCYlzv8I6m5JG+RvDl5k848J1ipIVPskpWYnHfyzpI7Dz7otWronkZQ2Qe5OB3deK6zhvNpfgjp3Y1Ih+dP6ut7v689c4dkMlkwhRArWEjmVgDQsQgIwGUr+a3cludBltziCYXDT8kapxV8JLlIckmICM+b1OiMyJK/3fIyz5FccFLsdF3jtIaW5tQX4mSRJhcvv26WSSpJ3suiWJJTQ9KDU4/pvz79t1psLi1/X+svAJ2LgABcpmx58aRkauVYXn72oOz4fpUai4pkaphTU1LwJrlzz0fwwtjgXHIZbzrTQLygSn0peUTR6utwXmev9ex0sn5K35z6nqZPHVZsJimSs2RVSQCdi4AAXKZaax20uiKE+qLi534gv3RUilxyMXaSN6co2HlHMqzEOdNpX1KXq+tDS6f16qbkw8pzKZxPIzT12MEn9d3DT6kelpI+jiZFDH0EOhoBAbhcpYsqttZNiuqzivc/rubSaTWcVywpck6RpHI6hdGlte8UhbJ8cLo7LOhdYVEbz/l44fyOLM5o5/f+Pz1x5BnFSZfJ83aLANB+BATgMuVlydRHXsnIguMHZMenZLFJKqvkkmGPwQU1nFPTnXOgY4a17k24WGaReqyun24c16vjukJYaRbF81daj2M9fPCH+vq+SS00FuS8FHMDAehoBASgQ4UQzjtRUms+AgtSaCzIDv5IduqwXGtdBeeWh0Je6npJyWAFJ6+mgovVlPSa+qLeFte1QbHkTM68oqSHg1zrBc4actn6O4kaXqeadX1tz6OaOnEgjSlBcTrRs5lJwS68zQDWDAEB6FDnG+KYfINJzkvOZI267PCP5ZZm0yWZ0+6LLulSGNmlf9jPdGkMiuXUG4Le01jQnc3F5VkTQ/qI40I3JpxzCib98Ogefe/YHjVCLJc+Zmg9amjFgmCMbwA6AQEB6FAXmgdBCgrmZIrlGgtqHn1GYXEuvdIWcP/eRfIqqWTJUs+Rgt7emNcHmwu6OgTJm6y1CFOrp+QKTE5mXuZNRxdO6j99f1y7Dj6jYJbO5aB0CmclszA6Vm4AOgEBAehQF7rV7tI7BTIvzexVNDMtZ63ZjPK+tmQhTv6WV9Nt0FIp0mY19L54Xrc3GzLzcs5kLsjF5+nfYD4dHulVt6YeOfKkvjH1qOaWTqd3OyQLyWgMZ8kEUNxCANqPgABcrtK7B2am5vRjCjMHJJVll9rh4FycydLJlTYEk2uWFOKS7mg29e7GvDZbXclYCUsnWjqXkD6ScHKx13xjTt/c931Nzx9dXuHJtaaMlsm8K+QGCIB8CAhABzv/XQRTkFccYvnDu+Xqs4p9SYV8rJNf5eXMy5mTc4tyvq5Y0oY46P3NBd0RltIVJyPFUVOmeOWmXJBFjfQuQpdiF/T4saf1t/ue0Hy9kfRjSDZHckmHSm4gAO13qeOV2mbnzp2q1Wq52xkbG8vdxn333afJyclcbczMzOSuQ5IeeOAB9ff352qjr6+vkFqKsH37dvX29uZqY+vWrYW8z+dy5MgR/cIv/MKqtX+xTE7egppH9ygcm5bF6RwFhfz2nTTiLKQzNkrmkvUZ6pJeFdc1GM/qCf9izbqSTE2l8x9l62z1iXCSJas+6fD8jP7rD2t63Ytfqde/9BaZpcHA7Kw+DZePIo7bTjIyMqJt27blamPXrl3avn177lqKOMcVZXh4OHcbRezbtXLZBISpqSlNTU21uwxJ0uTkZCFhpQgDAwMaHBxsdxmFyRu8WiqVSiHtrGTfvn2r1vZKzOycnRV9CHIHf6R45mAy1HD5V/F8kgcLLr0Zkaz0mA6qlDNpcwj6YKOuh0pNfceXFDtLloVcsUyf3h0IaXuR6ibtOvmsvrHn73XL5pfoRZuuSWdYTIdGFtCPYi0Vddx2ir6+vtyfoaLew046xxVx3l/Nc1PReMQAXKacM8VxQzr8tKKFYzJfSucnWL2llU1S00lRbLqrEWuofkrXxgvpWMWLP52YmY7MH9XXpx/RgYVjywtKLQcTnjEAbUdAADpUa5jjyr+JmWRB0eKsSkd/JFuclS13FFzNq6uTnFcj8trYNN3TmNedzaaieMMlPxZoWKwfnpjSX+95VEvxUnoysmTqJOZhBtqOgAB0qKQDoJ2jo6KTQpCOPysdf1YhbupMMFi92/NOJh+CmhakEOnWuKmhuKFNiuXcpd258PI6Nn9Sf7H72/rByWnFIZbMX/KsjwBWBwEBuFzFpsb+p1Q/fkDmS3LOklkIV/v5vTOVFMuipjYEr/fWF3RbfEo+XNpv/WZOsZyeODat//fH39F8Y/HMJEncQADajoAAdKjk8YIkhWTBBTUlM8UKCgpSWJROTClenFVwPpm6eA0695k5OTk13JJ8cLo11PXR+mldb0kvArc8niGZI2Hli32yQoMF6eTp4/ru9KSOnj6u2FlrAWsAbUZAADqYnf23uWQwgEwKQfWjz6l5ZLdcSGZPtDXq3BecZCrLq6xGFBRZU+9rNPW65lIycZKZ5F1rSQh5t8LoBpcuDuFNDef1yJGn9V+e+JZmFk+mCz8REoB2IyAAHc7ShZ1jJfMRuDQxuMNPKzoxLR+V5czUlG9NN7CqSia54BRZJIUkCNwcn9Z74oZ6zSfFKZIPkWRBds6+Cem4Bed0dOGkxvc8rEePPKNGaBIPgA5AQAA6WLLscli+U2/LyyMHuWO75WYPyFofY3PyySIKq1qRc8ky0HKxzMXycZAP0qamFKUDFdUqwblzzLDoJPNyweTUlHORYr9BC82GzM6sIwmgfS6biZKAK5WTpddbk0uXXo7mjsmOPKOwdDq9w9AaJLj6dxBiOSlycmqqLOlkVNb/Xe7Rjo1lnSw15OKSXAiKfVpNcOf8VcQ5qexKeu2Nr9avvO4DevsNd6jLR6u8BQAuBgEB6GhOpkjBmbyCnMVy8ooPPqFw9FnJ+eXlnb0snY2wmOWSLf0tvjUlgTknZ5ZMxiSncog0F23Uf9p0lb60sVuHrawoSLFzkk8eiJh5mWs9dlhueHmtB++lu298nf7nu0f09hvvUNmX09mSeMgAtBsBAWiz1jwHK45AaK1wmHyHJJ8swXx0Ss2TB6Vg6dDA1tLP51oR4RJr8VEQdwAAIABJREFUSh9ouLRPgbmgoEjenOSCShZ0Ql36443d+sNSjw65jfIWK8TJmgrLF3jXWtMhLa21xkNoamO5rLfc1K9ff8NH9Pab7lLJecmslXdUTMwB8JMiIAAdLBm9IHnn0r4FJbmlWdmxaak+p+Rhf6l12U1/3S/iwpp0HnTBJf0eIlMUTBZ5bZDXEW3UH151lf5j11U66Lpk1lTs7Ux/iHQYY2srvHeyYAqKJS91uy5V+l6n7W+5V295yW1J3wVLHqbE7swWAWgfAgLQZs65cy7r3JpTIFKQFBRcpPjYc7KDT0hxXTL/gtvxxc2mGJuTRUEKQb5ZkrypbKbDrlu/d1W3/s+ubp1wkcw3kzDRPEdfA7Nk3gZJzgdtdGW995Vv1b9600f1tutvk3de5r0Um8w7hUuckRHA6iAgAG10rmCw/HUpnRkxWWjBZNLJvXKnnlMkS573r5LImXwc1PRezpkiOT0bXaU/2NitPytdpRlFcr4phUjORwpupdEK6dRJZjLf1FXaqKGXv1Xb3/yzes2Lb5F8lAzhNCnykjdTOXjGVwEdgIAAdDKXjG80Sycbatbljjyjxuzh5c6JdtbT+uJGMZgsBMmXtSE4ed/Q06WyfqerW39W3qy6cwrRkmQlycqSNeR8LLPsKcVcskT01W6TPnD7O/Rv3nSv7nrRVrVGODiZSstFu+W/ALTXeQNCb2+v+vv716qW89q7d6+mpqbaXYYkqb+//4K/+a2VIvZJX1+f+vr6crdTxJrtu3bt0szMTK42ZmZmNDExkbuWczly5EjhbZrZip0UnSRnTQWVJJlsaUbu+LOKmosK6QRK2acK+WNCcon2MsUK3ukHpav1O5u69ZflHtWtpODrMpUUWVnmYjlzMiufGfLwPLG2dHXrI7f+Q/3KG/+R7ryuL+lYaVJwptCa3Mk5WQirEg8efvhhvfjFLy641WJ10vlWUu7P0NTUVCHnhCLOcZ22b/OanZ3V5ORk7nYudK49b0AYGBjQ2NhY7iKKMDo6qtHR0XaXIUl64IEH2l3CsuHhYdVqtVxtVKtVVavV3LWMj4/nbqOI7ZmcnNTQ0FDuWs7lXBfzPM7XnjknhUYyoOHYtOzAEwohWbOg9fShlRJ+kkura63tICdZST59JODN5EqmH0Qb9bmuzfqrcreCnELUTHoUmFdI/kSxnJx5RSFW8OmQyCBZ1FTvxqv0wVv/of71W35WL+++IVmDId1m58+uO3nO4FZhOceRkZE1Wacij0473+b9DFUqlY45J1QqlY7Zt0VY7XNcC48YgDa60EUrWX8hknOSxQ2FI8+ofvJAMgth60fP+q3dnfXPixUnsxoopJfuRmQqmakp6Ynoav3exqv1112b1DQns6Ys+GT+BSWPD1qjFcw1FZyTD+m8B5HTSza+SB+981365dd8SH091y/f3PDJxiWjM15QPU8XgM5AQAAuC162OJeMXliaU5FX0ZKk2Erqir1ifzq5g+DKejgq6Ysbe/St8tU6rSBFTgplKTRXmMgoXSDCOwWLJWvqFT036Bdf+wH9/Kvfo5u7r1NspuClSErnd1Ch2wGgWAQEoM3OO1GS0/LkQfHJ/Yqfe0zOGpKLCru2xpKCW9LpDV6bYtNSiPS1jT3638s9erC8SXUneRcrxEEulOV9SbFeOBTRyZmTa0o+CurruUG/+poPaeTOIb140zWyZFoFeQvpLIqd0YcHwLkREIA2O99jhuXOezL5mb2ymb0KLpnO2Be0oJEzp8h7edfQUinSX0XX6Atdm/XDaKMarW8KkSI1FCKnWCuvlZA8PXC68/pb9Kv9P633v/LtuvaqzUpmZJS8Sc4XP94CwOogIABtdN67B8l3yEkKcUN2fK906ogawZJRA84u+RKbLIOQBguXdBb0copCrDm3QX8V9epLXZs1WSqn6z4ky03LouUplJ0srdudaVSmyDvduvkG/Ub/h/Wzd75bJb9B5oLM0g6V3p014MKLgAB0NgIC0OFMkps/Kh15Rj5uKpJX7H6C38EtWVgxkuRlCun/OG+ajSP9564e/WFXr55WWZIpOCd5J4WQ/Hc6HbJzQa1BB5KTD0GRk954/W3a/pZ79a6XvVZdbkPykq2Fo/zZIy4IBsDlgIAAtNEFRzGkQwLj2SNaOvBjRbFX5J1i19SlTjfoFGRRpDhIsbxKsSlyQQ1z+s+brtXvbejRbp+uspiMY0zXVnDPX2HRInkzBTXkneR8SXe96JX69bd8TO+7dVBRM05GN/gkVLjWWhJJEQAuEwQEoMO5EMudPCA3d0DBlSSLFTm1ZhO46HaC84qaTZXMqRF5lZx0JHTpj7u79R/K3ZrWpiREBJO5dFXGlZjJm5JVHX1Jb3vZgO57472qvKxfJZO8d4olxelcCsl8DSQD4HJDQAA6XDg9o/i5RxUtnFTsg8xc8hu+s1Yvxotqx3xQUEkuOG1wCzrpu/Tvu3r1H8rX6EgU5Kwp2QY5i6XIkoWgVuoI6WPFZoq0SXffeJc+/baf17tuGlBkUWvQhZx3ipROgNQhs44CuDQEBKCDOTNp5oDC3kek0JQpyLlSsvjRpTYWvDZYSZGa2h316H/b2Ks/LXXrmLN0qWXJoiAXnFycDEW05z1aaL1irG6/Se/5B2/T//Dmj+hNL01WZIxdkJeX88lMjLL0R7l5AFyWCAhAB7MQy2YOyh3bq9hCOoWxyVykdBWni74Ae4tUUlNTvqT/pXyN/rR8tRYtkrmgZKKCIGd1OZVkPhkl8bzGTZIFbSht0tAtb9X/9Naf08CWW+QUKVh8Zg2Fs7obBCWPKyKRE4DLDQEB6BQWkuWcldzaT8LAknRij8LsIcVy8opkClK6QFKmCSVLJjuTGt5UNq+mk3zwipzpx9Em/a/dV+tPS91aCCXJh6Qj4vJF3cv8meUdvJJHDcFL8qZuRRq66U36N2+4VwMvfqUicwoy+XTqZXdWh0azZJ1J5wgHwOWIgAB0CEvHDpolt/eDOWlhTuHw7qSjotugyDnFcund/hUWjTKpqbIiv6RIkWLz8i6W80GPRlfp328q6y/KZc27ZOVFbyGdU8FJ8um/k3ZcumhTUF0y0w3lLfro7RX9s9e+T3e86BXp/QIn3xoB+YLtcY5Fm4HLGQEB6DhnHh3Y6ZMKR3YnCxxZJLmmnJOCuexyCFLyM+nt/mCmyEkq1fWY69VoV4++Vt6gYFclbShOHiWkyyg8r8G0D0Esk1ysF5W6NXLnu/Urb/6Ytm6+Xi7Y8/tHWjLhEokAWD8ICEAnSScWMicpbsif2COb2aemJbMShBAkF6XP+1fuphjJZOmyy947PVTaoi9FV+tbfqOaVkoGJ6iZdCQMkZxL+xucPdrAJaMeXAi68aqX6hdfM6z/rv+ndFPPi2RxUOuBwnI/hTTQcM8AWD8ICEBHSdZdcM5Jp0+qPvWobGFGJi/n4uTOwXIwWHlFxNhLURypKyrrqeteoS9pk75mC2pYkLkgb6YoSM3WugjLtxBeUEkI2rLpGv2Tgffrl1/3Ab1007VyFpI+EL61HkPS18AzzwGw7lxxAaGnpyd3G+Pj4xocHCygmvzGxsbaXUKhitieiYkJDQ0NFVDNWjJJQeZ88lt4MNnCKenIbjWbdZWclymWXDkd6mjPiwe2PGmSKQoNRaUe6dX36Mdb+7Xr8a+pPj8nH7ycNwUFmSLJ+2TpZpOeNyujmVxsuu2aPn3yzR/UR24d1Es3XpMMYnBnXsmn3+vTDonShWeG7ERzc3O52xgeHlatVsvVRq1WK+T8VIRqtVrIfukUnbRvR0dHNTo6mquNSqWyJsftpc3VCmBVmZOCmcyC/Nwh6cSUXGMpnXLZy6VdGVuX4bC8KEJQXSVZHFQ2yW5/h2be+FE9HG3QbFiSFKePA7ykKOl7EEJ6ZyJZY8FbSc6CnIJuue4G/fdv+JD+6avv0c3dL5bzSWdEJy/v/HL/A+9cOlKB2RKB9eaKu4MAdDJvyUJIobEkHdstN38smdnQlc56vp/82zlTKZic1WWupLKW5Ddtkt3+Pm14+4imSj361nf+XLOLC0pWZZKCzmrClEypbC7toFiXl+n2La/Uv3vXL+ieG1+rnvLzf+vKBIHl4ZGEA2C94Q4C0DHccn+AsHRK4cDjcotz6dLIWcHSW/6uWxacomiDooEPqfSOX1Ljhru0e/6ADpw+qBAHSaV04aVkekNnaQPpaIQoNOUU666X3KJ/+5Zt+uDNb1VPuWf50QGAKw93EIAO0Fq10blkPYNoaU6Nw8+osZT89r/y7+em4CJF8aJKXZvl3nKv/N2/oKj3Rp08fVK7DvxAJ+rHJHkpSM4r+UdIRix479NWGop9rLfccJd+8x2/pLtv7FfkfNL5sPU9BAXgikNAADqCJR0NnZPFscKRZxROHUmnQF75J5yTzJry3VfLvf5jiu7+p7JrbpCc16m4qR/OHtO8fNKvwAcFS9ZckFmyZoJJwYJK5Q0avPFOffotP6/BG/sV+UhOQa0RCmdeL/l/sxUmaAKw7hAQgA7gzORCkEWS4roa+5+Qzc8ocpZc2Fe4IJeai2pe1yf/tn8m/9p/JG1+yfIS0DNLp7X76D6F+oJKKikOkZJehkk7yYVe6ip36Z0v69f9b/t5vfGld8h5p2R6JK8X9iy4nEcqALh0BASgIzjJ+WR9haVZ+WO7FTeWFKyk4F26QoMpeCmKmzIfpGv61PX6n5V//c/I9VwvKUjmZTJNnz6s4wszUvrzkpKAoGR6ZZlpY3mThl7xJv3GGz6sN91wh0qulCzcdGYQI10PgSsYAQHoAMnv5smqinbqkOz4HrnGvJycfNxUcBtkcnLWUGR1xde8XP6d/0ru1e+WerbIpaMf5JxO1Rf0zae/p5OLc5KLpODkFZJ+Dk6SC+rdsEnve9Xd+vU3flSv2fJKlaLkVHCuDpEArjwEBKADuHRigdBsKhx6Rv7UQVloqmmRnPfJxd0a8t7kbnydym/+uKK77pFt6k1WXHRR0mvATIcWT+qRw89oIdQlC8lyzE6KrCELUvemHv3cHe/Wv37DR/SKq28mFABYEQEB6AAmpyAvW5pTfe9j0vwJOecUfPIRjeJYFpmiG14t/45/IXfbO+U2bFTkgszS6ZlDUD1u6okjezQ1f0TBYjlJsZPknYLFetFV1+of3zGkf/6an9YrNt+U3FFI7k20cesBdCICAtABTFIsqbRwVDr8pOJ6Xc5FyYyK1pQ3k172Wrl3/pqiW9+lUO5Kf7A13kByzutko6lHDu3WiYUTyWJM5uS9kzUauqbnGv38Xe/Vb7z+Z3TTVS9JuzPG6e2L6FylAbhCERCAtnn+Yks+NBUf2q1oZlohmJyP5F1DisrSTa9X9J5fk3/F22QuSoYuOp/OgnimmfnmKf3oxF4txfVkTiTv5eKgm67Zol/s/4D+yV336GU9L1JQLB8kpaMVuIEA4IUICEABQgjLkwpdHJMsnWug9UfNunTwxwpzM5IrSSEo+JJKt75H5Xd/UuGGASkqKZaTN6WrMoRkPgN5eSedXJjR1Ilp1cNSOs9BrFf1vky/+uaf0T9+9bt1/cZeSen9guVy11c6CCFc+JsAXBC9k4ACLC0tXfLPJJMqWzq/gMnVT6k5My3XPK2yFlTypvIrKiq/dZvsprvkfbKYklcsn85jYOnIhUiSxbF2nzygY6ePSXFTzpV1U+9L9ctv/oDuvf1d2rJx8/JaCs//u+Cd0WbNZrPdJQDrAncQgAIsLi5q06ZNF/GdpjOPFiTJJaMU4qbciSOKjk0rXlqUyl3SHT8lN/iL0g13ybmNSShwPmnBJ+spuLSDopzT7NK8vrX/ce1vnpIrlXRb71b9i9d/UB9+9d3asqH3iumI2Gg02l0CsC4QEIACHDt2TNdee+1FfW9ywyBZHMFcMnmRxXWFo08pnDqkuOsqRbe9V+V3/IrcTXdKLpJXkGRyFslLCi5OlmBWMrmSmelE85SePrlP9UZTt/du1afffq8+fMvd2ljaqCB39sOMdW12drbdJQDrwnkDwvT0tEZHR3O/yMjIiPr6+nK1UalUVK1Wc9dSxPYUYXp6Wjt27Gh3GYUq4v25XNVqNd1yyy0X9b1Okrl01EBrrYPGgpr7dkn1WUWv+bCit47IX/8qmbycTCGdS9FL8mokqzFauoiTk5bihh4+9qyeO3lQb7judv3LN31E73vFm7WhtFGxdMWEA0mamJjI/NmnPvUpbd68edVec9u2bapUKqvW/lorYluKOsdNT0/nbqMoRZzjarWaarVaAdWsPtfd3b3qZ47x8XENDg6u9stclJ6engt/0wUUsT0TExMaGhrKXUsnmZuba3cJklZ/3660WNF1112nJ5988iIfMySCKVkUKW6ocWyvmt/8ojZs3CR/9z9XuO7lirxkLl2iOR3MmHRLjBVbWU6mkkv+7OjCKY3+3Z/p4cOT+h9f/3N698vfrA0qq5TOsGguWYdhvXc6Wlxc1O23366jR48+78+ffPJJ3XTTTW2q6srEOW5lo6OjuX9RrVQqGhsby13L8PDwecPKej9fAGvi+PHj+uxnP6vFxcXzfl/SKTHIQpBZrCAnC7HCwnHZrT8l97Zfkm35B4oin6zW6JLFkbzz8s6n/11WyTm11ly0OFkJsv+6l+vfvmlE7+57na7yZUVecv6szohrsyvaZmlpSb/927+dCQcAfjIEBKAgX/nKV/T1r3/9gt9n0vK6CUEmi8rasKVPm257u2zLKxRclAaJ1qOB1uJJyb+dnLxrDXOUZKarN3TpPbe8Rm9/2Z26qrTxzHJL6Z0Dp/U2mDHroYce0pe//OV2lwGsG3RSBAoyOzurT33qU+rq6lKlUlFXV1fme5KLdJDSzoXOmWIfKbrqeplT2plQSYpwLk0TKy/37Fw63r/k1GVl3bThmrT99R4Fnm9paUkPPfSQPvGJT+jEiRPtLgdYN7iDABTo8OHD+vjHP67Pfe5z53lemYxccDJFilVSkJcUyamkoJKayRTIks7cOVi5laRPQitYeAXnr6h8sLi4qAceeEAf//jHdfDgwXaXA6wrBASgYKdOndKXvvQl3XHHHfqTP/kT7d+/X/Pz86rX6wrBJPPLgxdkPulJ4IKk+EwwSKdR9kkvhRVfp/XgoNW7IHh31l2H9SeEoHq9rvn5eR04cEBf/epXdfvtt+sLX/gCdw6AVcAjBmCVHD9+XJ/85CfbXQYA/ES4gwAAADIICAAAIIOAAAAAMuiDAFwi51y6AuPa2bdvX+42Pvaxj+nb3/52rjbuvvtuffWrX81dy1pbzWmWgfWKgAD8BF441fJqu+aaa3K3USqVctddKpUKqQVA5+MRAwAAyCAgAACADAICAADIICAAAIAMAgIAAMg47yiGSqWisbGx3C8yPDysWq2Wq41qtapqtZq7lnMvoHPxitieooyPj2twcLDdZUiSenp6crdRxPYMDg4W8j53kk7ZtxMTE4XUst7enyLOCUWdb4t4f4pQqVQ65nzbSfu2Wq1eNsc/dxAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZLju7m471xd7e3s1MDCQ+0VGRkbU19eXq41araZarZa7lrGxsdxtTE5OamZmJnc7Rdi5c6empqbaXYYkFfL+DAwMqLe3t4Bq8iviWNm5c6d27NiRu51qtVpILXmPlZmZGU1OTuauZW5uLncbRRkeHs7dRhHnuKLOt0V8DoswPT1dyLFfxL4tqpYi9u3WrVtzb09RLnQtO29AKMr4+LgGBwdztTE6OqrR0dHctXTSiakIw8PDHXNCWG+KOFY66bjtpGOlkz6HPT09udso4hy33kxMTGhoaCh3O0Xs26JqudLwiAEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZJTO98Xe3l719/fnfpGpqancbUxPT+duQ0rWBc9rYGBAmzdvztXG7OysJicnc9eydetWmVmuNvbu3VvIe5R3zXZJ2rVrl2ZmZnK1UdRx20mKOG6LOFaKOm7XmyL2yXo7bjdv3lzIOSHvubbIWor6HN5888252ynChc63rru7+5xnjEqlorGxsdxFDA8Pq1ar5W6nU4yPj+c+2CYmJjQ0NNQRtYyOjmp0dDR3LXNzc7nbKOJYKeq4LUJR+7YInXTcFnGsFKWnp6fdJUjqrOMWKyviWKlWq6pWqwVUk9+Fzrc8YgAAABkEBAAAkEFAAAAAGQQEAACQQUAAAAAZBAQAAJBBQAAAABkEBAAAkEFAAAAAGQQEAACQQUAAAAAZBAQAAJBBQAAAABkEBAAAkEFAAAAAGQQEAACQ4bq7u63dRWB9mJuba3cJkqSJiQkNDQ21uwxJUrVaVbVazd1OT09PAdXkV6lUNDY2lrudIrank/bt+Pi4BgcHc7dThE45VorCvs0q6nM4PDysWq12zq9zBwEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABARul8X9y6dau2bdu2VrWgTWq1mmq1Wu52RkdHc7cxMjKivr6+XG3cfPPNqlaruWspQqVSKaSdIrZn586dmpqaytXG9PR0Ie9zEdtT1L4two4dO/Tggw/maqOTzreVSiX3/p2entaOHTsKqiifomrplPNK3nPkxXLd3d12ri9WKhWNjY2tSSFon9HR0UJO+kUYHx/X4OBgu8tYl4aHhwsJgkWYm5trdwnLenp62l2CpOLOt0VsT7VazX0xnJiY0NDQUO5aijgnFFVLJx23RbjQOYFHDAAAIIOAAAAAMggIAAAgg4AAAAAyCAgAACCDgAAAADIICAAAIIOAAAAAMggIAAAgg4AAAAAyCAgAACCDgAAAADIICAAAIIOAAAAAMggIAAAgo7QWL7Jr1y7NzMysxUtdcQYGBrR58+Z2l9FRZmdnNTk52e4yJEl9fX3q6+vL3c7ExETuNjrpM1jE9hS1bwcHB3O3sd7OcdPT07nfo075DBapiOO2k1zomF2TgLB9+3bVarW1eKkrzvj4eCEnuPVkcnJSQ0ND7S5DklStVlWtVnO30ynbU5QitqeofTs+Pp67jeHh4XV1jtuxY4d27NjR7jI6znr7HF4IjxgAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZJTaXcDFGhkZ0bZt29pdRmF27dql7du3t7uMQo2NjeVuo7+/v5A2iqilCLVaTcPDw+0uY13auXOnarVa7nY65VgpynrbniLOCZ2kiGvZWl0/LpuA0NfXp0ql0u4yCuOca3cJheuU96e3t7djaqnVaoVcxJA1NTWlqampdpfRcTrl2MfKiriWrdX1g0cMAAAgg4AAAAAyCAgAACCDgAAAADIICAAAIIOAAAAAMggIAAAgg4AAAAAyCAgAACCDgAAAADIICAAAIIOAAAAAMggIAAAgg4AAAAAyCAgAACCj1O4CsH5MTEy0uwRJUm9vr/r7+3O3U9T2DA4OFtJOXrt27dLMzEyuNorat52kiPc5735ttdEpn6G+vj719fXlamN2dlaTk5O5axkYGNDmzZtztbF58+ZCPoed8v6sFQICCjM0NNTuEiRJlUpFY2NjudspYnuq1arGx8dzt1OE4eFh1Wq1XG0MDAwUsm87SU9PT7tLkCRNTk52zGeoWq2qWq3maqOo7RkfH899cR8YGCjkc9gpx8pa4REDAADIICAAAIAMAgIAAMggIAAAgAwCAgAAyCAgAACADAICAADIICAAAIAMAgIAAMggIAAAgAwCAgAAyCAgAACADAICAADIICAAAIAMAgIAAMggIAAAgIxSuwvA+jE3N5e7jeHhYdVqtQKqya+I7ekkY2Nj7S5hWU9PT+42qtWqqtVqAdXkNz4+rsHBwVxtTExMaGhoKHct6+247SRF7NvR0dHcx3+lUlmT8y13EAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEBAABkEBAAAEAGAQEAAGQQEAAAQAYBAQAAZBAQAABABgEB/39793LbOBJFAfQN0DsbUgSWIhAjkLWWc3AkDEALx6Ec7LXICOgIxAzoBNyLARoYPPQHqILIcZ+zNfB4q4ooXYALA0Dybe4Af6rrujidTnPHqGYcx7kjVFfjfGrsyziOi3lXDodD7Pf74jk11vP8/BybzaZoxjiOcT6fi7PU8NXuhIeHh2jbdu4YERHR931cLpeiGbXuuPP5XJxlaWqc8y3u2/9VQei6bu4Y/MJSLuvr9bqYLBGxmIJwOByqFISl7O1XuxO22+1iCsLlclnMOS+lkNbStm3xOfd9H8fjsVKin/OJAQBIFAQAIFEQAIBEQQAAEgUBAEgUBAAgURAAgERBAAASBQEASBQEACBREACAREEAABIFAQBIFAQAIFEQAIDk2y0estvt4vPz8xaP+uusVqu5I/yw3++LZ7y/v8c0TRXSlKuxnoh//3c7/1Vrb2tYyvl8fHzEMAxzx/ih9IyWtJ71eh273a54zlLeldVqdZP79iYF4eXl5RaPYWZvb2/FM56enqLrugppytVYz+l0iuPxWCHN11Jjb2u5v7+fO0JERAzDsJh3pW3b4jPq+34x62maJl5fX4vnLOVdaZrmJvetTwwAQKIgAACJggAAJAoCAJAoCABAoiAAAIkwDGHTAAAAsElEQVSCAAAkCgIAkCgIAECiIAAAiYIAACQKAgCQKAgAQKIgAACJggAAJAoCAJD8c3d39/mzP67X62ia5pZ5mME4jnG9XovnPD4+Fs8YhiGmaSqeU0ON9dTa2xqapon1el00Y5qmGIahOEuNva2l67riGUva2xq2221sNpuiGUtaT63fshrvSo29reV39+0vCwIA8HfyiQEASBQEACBREACAREEAABIFAQBIFAQAIPkO+iZWIkzLXFQAAAAASUVORK5CYII=" alt="Anand Trades QR" width="140" height="140" style="display:block;border-radius:6px;">
+        </div>
+        <div style="color:rgba(255,255,255,0.4);font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;">UPI: 7209490697@upi</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- UPI PAYMENT BAR -->
+<div class="upi-bar">
+  <div class="upi-inner">
+    <div class="upi-title" id="upi-title">💳 We Accept UPI Payments</div>
+    <div class="upi-sub" id="upi-sub">Scan &amp; Pay Instantly</div>
+    <div class="upi-logos">
+
+      <!-- PhonePe -->
+      <a class="upi-card" href="phonepe://pay?pa=7209490697@upi&pn=Anand+Trades&tn=Order+Payment&cu=INR" onclick="openUPI(event,'phonepe://pay?pa=7209490697@upi&pn=Anand+Trades&tn=Order+Payment&cu=INR')">
+        <div class="upi-badge phonepe-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="#5F259F"/>
+            <path d="M17.1 9.24l-4.3-2.48c-.49-.28-1.1-.28-1.59 0L7.9 9.24C7.41 9.52 7.1 10.05 7.1 10.6v4.79c0 .56.31 1.08.8 1.36l4.3 2.48c.49.28 1.1.28 1.59 0l4.3-2.48c.49-.28.8-.8.8-1.36V10.6c0-.55-.31-1.08-.8-1.36z" fill="#fff" opacity=".9"/>
+            <path d="M10 14v-4l2 1.5L16 9v4l-4 2-2-1z" fill="#5F259F"/>
+          </svg>
+          PhonePe
+        </div>
+        <div class="upi-name">7209490697@upi</div>
+      </a>
+
+      <!-- Google Pay -->
+      <a class="upi-card" href="tez://upi/pay?pa=7209490697@upi&pn=Anand+Trades&tn=Order+Payment&cu=INR" onclick="openUPI(event,'tez://upi/pay?pa=7209490697@upi&pn=Anand+Trades&tn=Order+Payment&cu=INR')">
+        <div class="upi-badge gpay-badge">
+          <svg width="38" height="18" viewBox="0 0 80 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="26" font-family="'Product Sans',Arial,sans-serif" font-size="28" font-weight="700" fill="#4285F4">G</text>
+            <text x="20" y="26" font-family="'Product Sans',Arial,sans-serif" font-size="28" font-weight="700" fill="#EA4335">P</text>
+            <text x="38" y="26" font-family="'Product Sans',Arial,sans-serif" font-size="28" font-weight="700" fill="#FBBC04">a</text>
+            <text x="53" y="26" font-family="'Product Sans',Arial,sans-serif" font-size="28" font-weight="700" fill="#34A853">y</text>
+          </svg>
+        </div>
+        <div class="upi-name">7209490697@upi</div>
+      </a>
+
+      <!-- Paytm -->
+      <a class="upi-card" href="paytmmp://cash?pa=7209490697@upi&pn=Anand+Trades&tn=Order+Payment&cu=INR" onclick="openUPI(event,'paytmmp://cash?pa=7209490697@upi&pn=Anand+Trades&tn=Order+Payment&cu=INR')">
+        <div class="upi-badge paytm-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="4" fill="#00B9F1"/>
+            <path d="M4 8h7v2H6v2h5v2H6v4H4V8zm9 0h5c1.1 0 2 .9 2 2v8h-2v-3h-3v3h-2V8zm2 2v3h3v-3h-3z" fill="#fff"/>
+          </svg>
+          Paytm
+        </div>
+        <div class="upi-name">7209490697@upi</div>
+      </a>
+
+    </div>
+    <div class="upi-accepted" id="upi-note">✦ &nbsp; All major UPI apps accepted &nbsp; ✦</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="sec white">
+  <h2 class="s-title" id="ps-title">Our <span>Products</span></h2>
+  <p class="s-sub" id="ps-sub">Everything you need at wholesale prices</p>
+  <div class="gbtn-wrap">
+    <button class="gbtn prod-btn" id="pBtn" onclick="toggleProds()">&#128065;&#65039; <span id="pBtnTxt">View All Products</span></button>
+  </div>
+  <div class="pgrid" id="pGrid"></div>
+</section>
+
+<!-- BRANDS -->
+<section class="sec dark">
+  <h2 class="s-title" id="bs-title">Our <span>Brands</span></h2>
+  <p class="s-sub" id="bs-sub">Top brands at wholesale rates</p>
+  <div class="gbtn-wrap">
+    <button class="gbtn brand-btn" id="bBtn" onclick="toggleBrands()">&#127991;&#65039; <span id="bBtnTxt">View All Brands</span></button>
+  </div>
+  <div class="bgrid" id="bGrid"></div>
+</section>
+
+<!-- LOCATION / MAP -->
+<section class="map-sec">
+  <h2 class="s-title" id="map-title">Find <span>Our Store</span></h2>
+  <p class="s-sub" id="map-sub">Front of New Style Mall, Patel Chowk, Dhabouli</p>
+  <div class="map-frame-wrap">
+    <iframe
+      class="map-frame"
+      id="map-frame"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://maps.google.com/maps?q=Patel+Chowk+Dhabouli+Uttar+Pradesh&output=embed&z=16">
+    </iframe>
+    <div class="map-actions">
+      <a class="map-act-btn dir-btn" href="https://maps.app.goo.gl/BEmPcs9hfGyRfpqp7?g_st=aw" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M21.71 11.29l-9-9a1 1 0 00-1.42 0l-9 9a1 1 0 000 1.42l9 9a1 1 0 001.42 0l9-9a1 1 0 000-1.42zM14 14.5V12h-4v3H8v-4a1 1 0 011-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
+        <span id="dir-btn-lbl">Get Directions</span>
+      </a>
+      <a class="map-act-btn wa-order-btn" href="https://wa.me/917209490697?text=Namaste%2C%20I%20want%20to%20order%20from%20Anand%20Trades..." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.934 1.395 5.604L0 24l6.545-1.371A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.032-1.388l-.36-.214-3.733.978.997-3.648-.235-.374A9.791 9.791 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        <span id="wa-order-lbl">Order on WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CHAT -->
+<section class="chat-sec">
+  <h2 class="s-title" id="ch-title">Ask About <span>Anand Trades</span></h2>
+  <p class="s-sub" id="ch-sub">AI-Powered Store Assistant</p>
+  <div class="chat-box">
+    <div class="chat-head">
+      <div class="chat-av">&#128722;</div>
+      <div>
+        <div class="chat-hname" id="ch-hname">Anand Trades Assistant</div>
+        <div class="chat-hstat"><span class="dot"></span><span id="ch-hstat">Online &ndash; Ask me anything!</span></div>
+      </div>
+    </div>
+    <div class="msgs" id="msgs">
+      <div class="msg b"><div class="mav">&#127978;</div><div class="mbub" id="welcomeMsg">&#128591; <strong>Jai Anand Trades!</strong><br>Welcome! Ask me about products, location, contact, brands, timings, or anything about the store!</div></div>
+    </div>
+    <div class="qbtns" id="qbtns">
+      <button class="qbtn" data-eq="What products do you sell?" data-hq="&#2310;&#2346; &#2325;&#2381;&#2351;&#2366; &#2348;&#2375;&#2330;&#2340;&#2375; &#2361;&#2376;&#2306;?" data-et="&#128717;&#65039; Products" data-ht="&#128717;&#65039; &#2313;&#2340;&#2381;&#2346;&#2366;&#2342;" onclick="qAsk(this)">&#128717;&#65039; Products</button>
+      <button class="qbtn" data-eq="Where is the store located?" data-hq="&#2342;&#2369;&#2325;&#2366;&#2344; &#2325;&#2361;&#2366;&#2305; &#2361;&#2376;?" data-et="&#128205; Location" data-ht="&#128205; &#2346;&#2340;&#2366;" onclick="qAsk(this)">&#128205; Location</button>
+      <button class="qbtn" data-eq="What is the contact number?" data-hq="&#2360;&#2306;&#2346;&#2352;&#2381;&#2325; &#2344;&#2306;&#2348;&#2352; &#2325;&#2381;&#2351;&#2366; &#2361;&#2376;?" data-et="&#128222; Contact" data-ht="&#128222; &#2360;&#2306;&#2346;&#2352;&#2381;&#2325;" onclick="qAsk(this)">&#128222; Contact</button>
+      <button class="qbtn" data-eq="Which brands do you carry?" data-hq="&#2325;&#2380;&#2344; &#2360;&#2375; &#2348;&#2381;&#2352;&#2366;&#2306;&#2337; &#2350;&#2367;&#2354;&#2340;&#2375; &#2361;&#2376;&#2306;?" data-et="&#127991;&#65039; Brands" data-ht="&#127991;&#65039; &#2348;&#2381;&#2352;&#2366;&#2306;&#2337;" onclick="qAsk(this)">&#127991;&#65039; Brands</button>
+      <button class="qbtn" data-eq="Do you offer home delivery?" data-hq="&#2918;&#2352; &#2346;&#2352; &#2337;&#2367;&#2354;&#2368;&#2357;&#2352;&#2368; &#2361;&#2379;&#2340;&#2368; &#2361;&#2376;?" data-et="&#128666; Delivery" data-ht="&#128666; &#2337;&#2367;&#2354;&#2368;&#2357;&#2352;&#2368;" onclick="qAsk(this)">&#128666; Delivery</button>
+      <button class="qbtn" data-eq="What tobacco products do you have?" data-hq="&#2340;&#2350;&#2381;&#2348;&#2366;&#2325;&#2370; &#2313;&#2340;&#2381;&#2346;&#2366;&#2342; &#2325;&#2380;&#2344; &#2360;&#2375; &#2361;&#2376;&#2306;?" data-et="&#128680; Tobacco" data-ht="&#128680; &#2340;&#2350;&#2381;&#2348;&#2366;&#2325;&#2370;" onclick="qAsk(this)">&#128680; Tobacco</button>
+    </div>
+    <div class="cinput-row">
+      <input class="cinput" id="cinput" type="text" placeholder="Type your question..." onkeydown="if(event.key==='Enter')sendMsg()"/>
+      <button class="sbtn" id="sbtn" onclick="sendMsg()"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-brand">Anand Trades &middot; &#2310;&#2344;&#2306;&#2342; &#2335;&#2381;&#2352;&#2375;&#2337;&#2381;&#2360;</div>
+  <div id="ft-line">Wholesale General Store &middot; Patel Chowk, Dhabouli &middot; Est. 2026</div>
+  <div style="margin-top:7px;">&copy; 2026 Anand Trades &middot; Owner: Mohan Chaudhary &middot; +91 98354 35228</div>
+</footer>
+
+<script>
+/* ===== LANGUAGE ===== */
+let lang = 'en';
+const T = {
+  en:{
+    'h-tag':'Wholesale General Store · Est. 2026',
+    'b1':'🛒 Wholesale','b2':'📦 Bulk Orders','b3':'✅ Best Prices','b4':'🏡 Local Trust',
+    'sc-lbl':'Scroll',
+    'ic-title':'Why Choose <span>Anand Trades?</span>',
+    'ic-sub':'Your trusted wholesale partner',
+    'ic1t':'Wide Product Range','ic1':'Groceries, FMCG, chocolates, snacks, tobacco, household & more — all under one roof.',
+    'ic2t':'Wholesale Rates','ic2':'Unbeatable bulk pricing for retailers & shopkeepers. Save more, sell more.',
+    'ic3t':'Fast Delivery','ic3':'Quick local delivery. Same-day dispatch for in-stock items within range.',
+    'ic4t':'New in 2026','ic4':'Freshly opened with a vision for honest dealing and quality service for the community.',
+    'cl1':'WhatsApp – Satyam Anand','cl2':'Call Only – Mohan Chaudhary','cl3':'Email Us','cl4':'Front of New Style Mall','cl5':'Owner · Est. 2026',
+    'ps-title':'Our <span>Products</span>','ps-sub':'Everything you need at wholesale prices',
+    'pBtnTxt':'View All Products',
+    'bs-title':'Our <span>Brands</span>','bs-sub':'Top brands at wholesale rates',
+    'bBtnTxt':'View All Brands',
+    'ch-title':'Ask About <span>Anand Trades</span>','ch-sub':'AI-Powered Store Assistant',
+    'ch-hname':'Anand Trades Assistant','ch-hstat':'Online – Ask me anything!',
+    'welcomeMsg':'🙏 <strong>Jai Anand Trades!</strong><br>Welcome! Ask me about products, location, contact, brands, timings, or anything about the store!',
+    'ft-line':'Wholesale General Store · Patel Chowk, Dhabouli · Est. 2026',
+    'cinput-ph':'Type your question...',
+    'upi-title':'💳 We Accept UPI Payments','upi-sub':'Scan & Pay Instantly','upi-note':'✦   All major UPI apps accepted   ✦',
+    'map-title':'Find <span>Our Store</span>','map-sub':'Front of New Style Mall, Patel Chowk, Dhabouli',
+    'dir-btn-lbl':'Get Directions','wa-order-lbl':'Order on WhatsApp',
+    'share-btn-lbl':'Share Store','wa-pill-lbl':'Order on WhatsApp 🛒'
+  },
+  hi:{
+    'h-tag':'थोक किराना स्टोर · स्थापना 2026',
+    'b1':'🛒 थोक','b2':'📦 बल्क ऑर्डर','b3':'✅ सबसे सस्ते दाम','b4':'🏡 स्थानीय विश्वास',
+    'sc-lbl':'नीचे देखें',
+    'ic-title':'क्यों चुनें <span>आनंद ट्रेड्स?</span>',
+    'ic-sub':'आपका भरोसेमंद थोक साझेदार',
+    'ic1t':'विशाल उत्पाद श्रेणी','ic1':'किराना, FMCG, चॉकलेट, स्नैक्स, तम्बाकू, घरेलू सामान — सब एक छत के नीचे।',
+    'ic2t':'थोक मूल्य','ic2':'दुकानदारों के लिए सबसे सस्ते दाम। ज्यादा बचाएं, ज्यादा बेचें।',
+    'ic3t':'तेज़ डिलीवरी','ic3':'स्थानीय डिलीवरी उपलब्ध। स्टॉक में है तो उसी दिन भेजेंगे।',
+    'ic4t':'2026 में नया','ic4':'2026 में खुला — ईमानदारी और गुणवत्ता के साथ पूरे समुदाय की सेवा।',
+    'cl1':'व्हाट्सऐप – सत्यम आनंद','cl2':'केवल कॉल – मोहन चौधरी','cl3':'ईमेल करें','cl4':'न्यू स्टाइल मॉल के सामने','cl5':'मालिक · स्थापना 2026',
+    'ps-title':'हमारे <span>उत्पाद</span>','ps-sub':'सब कुछ एक जगह, थोक दामों पर',
+    'pBtnTxt':'सभी उत्पाद देखें',
+    'bs-title':'हमारे <span>ब्रांड</span>','bs-sub':'टॉप ब्रांड थोक दामों पर',
+    'bBtnTxt':'सभी ब्रांड देखें',
+    'ch-title':'पूछें <span>आनंद ट्रेड्स</span> के बारे में','ch-sub':'AI-संचालित स्टोर सहायक',
+    'ch-hname':'आनंद ट्रेड्स सहायक','ch-hstat':'ऑनलाइन — कुछ भी पूछें!',
+    'welcomeMsg':'🙏 <strong>जय आनंद ट्रेड्स!</strong><br>नमस्ते! उत्पाद, पता, संपर्क, ब्रांड, टाइमिंग — कुछ भी पूछें!',
+    'ft-line':'थोक किराना स्टोर · पटेल चौक, धबौली · स्थापना 2026',
+    'cinput-ph':'अपना सवाल लिखें...',
+    'upi-title':'💳 UPI से पेमेंट करें','upi-sub':'स्कैन करें और तुरंत भुगतान करें','upi-note':'✦   सभी प्रमुख UPI ऐप स्वीकार   ✦',
+    'map-title':'हमारी <span>दुकान खोजें</span>','map-sub':'न्यू स्टाइल मॉल के सामने, पटेल चौक, धबौली',
+    'dir-btn-lbl':'रास्ता पाएं','wa-order-lbl':'WhatsApp पर ऑर्डर करें',
+    'share-btn-lbl':'स्टोर शेयर करें','wa-pill-lbl':'WhatsApp पर ऑर्डर करें 🛒'
+  }
+};
+
+function setLang(l) {
+  lang = l;
+  document.getElementById('btnEN').className = 'lb-btn' + (l==='en'?' on':'');
+  document.getElementById('btnHI').className = 'lb-btn' + (l==='hi'?' on':'');
+  const d = T[l];
+  for(const id in d) {
+    const el = document.getElementById(id);
+    if(!el) continue;
+    if(id==='cinput-ph') { el.placeholder = d[id]; }
+    else { el.innerHTML = d[id]; }
+  }
+  document.querySelectorAll('.qbtn').forEach(btn => {
+    const attr = l==='hi' ? 'data-ht' : 'data-et';
+    btn.innerHTML = btn.getAttribute(attr);
+  });
+  document.getElementById('pGrid').innerHTML = '';
+  document.getElementById('bGrid').innerHTML = '';
+  pOpen = false; bOpen = false;
+  document.getElementById('pGrid').className = 'pgrid';
+  document.getElementById('bGrid').className = 'bgrid';
+  document.getElementById('pBtnTxt').textContent = d['pBtnTxt'];
+  document.getElementById('bBtnTxt').textContent = d['bBtnTxt'];
+}
+
+/* ===== PRODUCTS ===== */
+// Real product images from Unsplash (public CDN)
+const PRODS = [
+  {img:'https://images.unsplash.com/photo-1536304929831-ee1ca9d44906?w=400&h=400&fit=crop&q=80',e:'🌾',en:'Basmati Rice',hi:'बासमती चावल',cat:'Grocery',bg:'linear-gradient(135deg,#f9e4b7,#e8a020)'},
+  {img:'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=400&fit=crop&q=80',e:'🌽',en:'Wheat Flour (Atta)',hi:'गेहूं आटा',cat:'Grocery',bg:'linear-gradient(135deg,#fde68a,#d97706)'},
+  {img:'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=400&fit=crop&q=80',e:'🫘',en:'Dal & Pulses',hi:'दाल व दलहन',cat:'Grocery',bg:'linear-gradient(135deg,#fbbf24,#b45309)'},
+  {img:'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&h=400&fit=crop&q=80',e:'🫙',en:'Cooking Oil',hi:'खाना पकाने का तेल',cat:'Grocery',bg:'linear-gradient(135deg,#fef3c7,#f59e0b)'},
+  {img:'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&h=400&fit=crop&q=80',e:'🧂',en:'Salt & Spices',hi:'नमक और मसाले',cat:'Grocery',bg:'linear-gradient(135deg,#fee2e2,#ef4444)'},
+  {img:'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=400&fit=crop&q=80',e:'🍵',en:'Tea & Coffee',hi:'चाय और कॉफी',cat:'Grocery',bg:'linear-gradient(135deg,#fcd9bd,#c2410c)'},
+  {img:'https://images.unsplash.com/photo-1481391243133-f96216dcb5d2?w=400&h=400&fit=crop&q=80',e:'🍫',en:'Dairy Milk Chocolate',hi:'डेयरी मिल्क चॉकलेट',cat:'Chocolates',bg:'linear-gradient(135deg,#5b21b6,#a855f7)'},
+  {img:'https://images.unsplash.com/photo-1575377427642-087cf684ad41?w=400&h=400&fit=crop&q=80',e:'🍬',en:'KitKat',hi:'किटकैट',cat:'Chocolates',bg:'linear-gradient(135deg,#dc2626,#f87171)'},
+  {img:'https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=400&h=400&fit=crop&q=80',e:'🍭',en:'5 Star & Munch',hi:'5 स्टार और मंच',cat:'Chocolates',bg:'linear-gradient(135deg,#d97706,#fbbf24)'},
+  {img:'https://images.unsplash.com/photo-1582058091597-8a03baa7f8e8?w=400&h=400&fit=crop&q=80',e:'🍡',en:'Eclairs & Melody',hi:'एक्लेयर्स और मेलोडी',cat:'Chocolates',bg:'linear-gradient(135deg,#92400e,#fbbf24)'},
+  {img:'https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&h=400&fit=crop&q=80',e:'🟠',en:'Kurkure',hi:'कुरकुरे',cat:'Snacks',bg:'linear-gradient(135deg,#ea580c,#fb923c)'},
+  {img:'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=400&fit=crop&q=80',e:'🥔',en:'Lays Chips',hi:'लेज़ चिप्स',cat:'Snacks',bg:'linear-gradient(135deg,#ca8a04,#fde047)'},
+  {img:'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=400&fit=crop&q=80',e:'🥨',en:'Uncle Chips',hi:'अंकल चिप्स',cat:'Snacks',bg:'linear-gradient(135deg,#b45309,#f59e0b)'},
+  {img:'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=400&fit=crop&q=80',e:'🍪',en:'Parle-G Biscuits',hi:'पार्ले-जी',cat:'Snacks',bg:'linear-gradient(135deg,#fef9c3,#eab308)'},
+  {img:'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=400&fit=crop&q=80',e:'🧆',en:'Namkeen Mix',hi:'नमकीन मिक्स',cat:'Snacks',bg:'linear-gradient(135deg,#fde68a,#f59e0b)'},
+  {img:'https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=400&h=400&fit=crop&q=80',e:'🥤',en:'Pepsi & Coke',hi:'पेप्सी और कोक',cat:'Beverages',bg:'linear-gradient(135deg,#1d4ed8,#60a5fa)'},
+  {img:'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=400&fit=crop&q=80',e:'🧃',en:'Fruit Juices',hi:'फलों का रस',cat:'Beverages',bg:'linear-gradient(135deg,#16a34a,#86efac)'},
+  {img:'https://images.unsplash.com/photo-1559839914-17aae19cec71?w=400&h=400&fit=crop&q=80',e:'💧',en:'Packaged Water',hi:'पैकेज्ड पानी',cat:'Beverages',bg:'linear-gradient(135deg,#0ea5e9,#bae6fd)'},
+  {img:'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&h=400&fit=crop&q=80',e:'🧴',en:'Shampoo',hi:'शैम्पू',cat:'Personal Care',bg:'linear-gradient(135deg,#7c3aed,#c4b5fd)'},
+  {img:'https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&h=400&fit=crop&q=80',e:'🧼',en:'Soap & Face Wash',hi:'साबुन और फेस वॉश',cat:'Personal Care',bg:'linear-gradient(135deg,#0891b2,#67e8f9)'},
+  {img:'https://images.unsplash.com/photo-1559591935-b9a72c8eef87?w=400&h=400&fit=crop&q=80',e:'🪥',en:'Toothpaste',hi:'टूथपेस्ट',cat:'Personal Care',bg:'linear-gradient(135deg,#059669,#6ee7b7)'},
+  {img:'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=400&h=400&fit=crop&q=80',e:'🧹',en:'Brooms & Mops',hi:'झाड़ू और पोछा',cat:'Household',bg:'linear-gradient(135deg,#78350f,#d97706)'},
+  {img:'https://images.unsplash.com/photo-1582560475093-ba66accbc424?w=400&h=400&fit=crop&q=80',e:'🕯️',en:'Agarbatti (Incense)',hi:'अगरबत्ती',cat:'Household',bg:'linear-gradient(135deg,#9d174d,#f9a8d4)'},
+  {img:'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&h=400&fit=crop&q=80',e:'🪣',en:'Phenyl & Lizol',hi:'फिनाइल और लिज़ोल',cat:'Household',bg:'linear-gradient(135deg,#155e75,#22d3ee)'},
+  {img:'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&h=400&fit=crop&q=80',e:'🚬',en:'Gold Flake Cigarettes',hi:'गोल्ड फ्लेक सिगरेट',cat:'Tobacco',bg:'linear-gradient(135deg,#1c1917,#78716c)'},
+  {img:'https://images.unsplash.com/photo-1534258936-05a3fef73b3a?w=400&h=400&fit=crop&q=80',e:'🚬',en:'Classic & Wills',hi:'क्लासिक और विल्स',cat:'Tobacco',bg:'linear-gradient(135deg,#292524,#a8a29e)'},
+  {img:'https://images.unsplash.com/photo-1571068316344-75bc8aeef813?w=400&h=400&fit=crop&q=80',e:'🌿',en:'Vimal Chewing',hi:'विमल चबाने वाला',cat:'Tobacco',bg:'linear-gradient(135deg,#14532d,#4ade80)'},
+  {img:'https://images.unsplash.com/photo-1543362906-acfc16c67564?w=400&h=400&fit=crop&q=80',e:'🌸',en:'Rajnigandha Pan Masala',hi:'रजनीगंधा',cat:'Tobacco',bg:'linear-gradient(135deg,#365314,#bef264)'},
+  {img:'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=400&h=400&fit=crop&q=80',e:'🍼',en:'Baby Food',hi:'बेबी फ़ूड',cat:'Baby',bg:'linear-gradient(135deg,#fbcfe8,#ec4899)'},
+  {img:'https://images.unsplash.com/photo-1614859324967-df1c370c7476?w=400&h=400&fit=crop&q=80',e:'👶',en:'Diapers',hi:'डायपर',cat:'Baby',bg:'linear-gradient(135deg,#dbeafe,#3b82f6)'},
+];
+
+// Real brand images from Unsplash (product category photos)
+const BRANDS = [
+  {img:'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&h=220&fit=crop&q=80',n:'ITC',t:'Cigarettes & Foods',bg:'#1c1917',ac:'#d4a853'},
+  {img:'https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&h=220&fit=crop&q=80',n:'HUL',t:'Surf Excel, Lifebuoy',bg:'#1d4ed8',ac:'#93c5fd'},
+  {img:'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&h=220&fit=crop&q=80',n:'P&G',t:'Ariel, Pantene',bg:'#1e3a5f',ac:'#bae6fd'},
+  {img:'https://images.unsplash.com/photo-1481391243133-f96216dcb5d2?w=400&h=220&fit=crop&q=80',n:'Cadbury',t:'Dairy Milk, 5 Star',bg:'#5b21b6',ac:'#c4b5fd'},
+  {img:'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=220&fit=crop&q=80',n:'Britannia',t:'Biscuits & Breads',bg:'#b91c1c',ac:'#fecaca'},
+  {img:'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=220&fit=crop&q=80',n:'Parle',t:'Parle-G, Monaco',bg:'#92400e',ac:'#fcd34d'},
+  {img:'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=400&h=220&fit=crop&q=80',n:'Dabur',t:'Chyawanprash, Honey',bg:'#14532d',ac:'#86efac'},
+  {img:'https://images.unsplash.com/photo-1571068316344-75bc8aeef813?w=400&h=220&fit=crop&q=80',n:'Patanjali',t:'Herbal Products',bg:'#166534',ac:'#bbf7d0'},
+  {img:'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&h=220&fit=crop&q=80',n:'Marico',t:'Parachute, Saffola',bg:'#1e3a5f',ac:'#7dd3fc'},
+  {img:'https://images.unsplash.com/photo-1563636619-e9143da7f9b6?w=400&h=220&fit=crop&q=80',n:'Amul',t:'Milk & Dairy',bg:'#92400e',ac:'#fde68a'},
+  {img:'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&h=220&fit=crop&q=80',n:'MDH',t:'Spices & Masala',bg:'#991b1b',ac:'#fca5a5'},
+  {img:'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&h=220&fit=crop&q=80&crop=right',n:'Everest',t:'Spices & Powders',bg:'#7f1d1d',ac:'#fecaca'},
+  {img:'https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&h=220&fit=crop&q=80',n:'PepsiCo',t:'Lays, Kurkure',bg:'#1e40af',ac:'#93c5fd'},
+  {img:'https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=400&h=220&fit=crop&q=80',n:'Coca-Cola',t:'Coke, Sprite, Limca',bg:'#dc2626',ac:'#fca5a5'},
+  {img:'https://images.unsplash.com/photo-1575377427642-087cf684ad41?w=400&h=220&fit=crop&q=80',n:'Nestlé',t:'KitKat, Munch, Nescafé',bg:'#1c1917',ac:'#fbbf24'},
+  {img:'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=220&fit=crop&q=80',n:'Emami',t:'Fair & Handsome',bg:'#7f1d1d',ac:'#fda4af'},
+  {img:'https://images.unsplash.com/photo-1543362906-acfc16c67564?w=400&h=220&fit=crop&q=80',n:'Vimal',t:'Pan & Chewing Tobacco',bg:'#14532d',ac:'#86efac'},
+  {img:'https://images.unsplash.com/photo-1543362906-acfc16c67564?w=400&h=220&fit=crop&q=80&crop=top',n:'Rajnigandha',t:'Pan Masala',bg:'#365314',ac:'#bef264'},
+];
+
+let pOpen=false, bOpen=false;
+
+function buildProds(){
+  const g=document.getElementById('pGrid');
+  if(g.children.length) return;
+  PRODS.forEach(p=>{
+    const nm = lang==='hi' ? p.hi : p.en;
+    const d=document.createElement('div');
+    d.className='pcard';
+    d.innerHTML=`
+      <div class="pcard-img" style="background:${p.bg}">
+        <img src="${p.img}" alt="${nm}" loading="lazy" onerror="this.style.display='none'">
+        <span class="fallback-emoji" style="position:absolute;z-index:0;">${p.e}</span>
+      </div>
+      <div class="pcard-info">
+        <div class="pcard-name">${nm}</div>
+        <div class="pcard-cat">${p.cat}</div>
+      </div>`;
+    g.appendChild(d);
+  });
+}
+
+function buildBrands(){
+  const g=document.getElementById('bGrid');
+  if(g.children.length) return;
+  BRANDS.forEach(b=>{
+    const d=document.createElement('div');
+    d.className='bcard';
+    d.style.background=b.bg;
+    d.innerHTML=`
+      <div class="bcard-img-wrap">
+        <img src="${b.img}" alt="${b.n}" loading="lazy" onerror="this.style.display='none'">
+        <div class="bfallback" style="background:${b.bg};color:${b.ac};font-size:2rem;font-weight:900;">${b.n[0]}</div>
+      </div>
+      <div class="bcard-body">
+        <div class="bcard-name" style="color:${b.ac}">${b.n}</div>
+        <div class="bcard-tag" style="color:#fff">${b.t}</div>
+      </div>`;
+    g.appendChild(d);
+  });
+}
+
+function toggleProds(){
+  buildProds();
+  pOpen=!pOpen;
+  const g=document.getElementById('pGrid');
+  g.className='pgrid'+(pOpen?' open':'');
+  const isHi=lang==='hi';
+  document.getElementById('pBtnTxt').textContent = pOpen?(isHi?'उत्पाद छुपाएं':'Hide Products'):(isHi?'सभी उत्पाद देखें':'View All Products');
+  if(pOpen) setTimeout(()=>g.scrollIntoView({behavior:'smooth',block:'start'}),100);
+}
+
+function toggleBrands(){
+  buildBrands();
+  bOpen=!bOpen;
+  const g=document.getElementById('bGrid');
+  g.className='bgrid'+(bOpen?' open':'');
+  const isHi=lang==='hi';
+  document.getElementById('bBtnTxt').textContent = bOpen?(isHi?'ब्रांड छुपाएं':'Hide Brands'):(isHi?'सभी ब्रांड देखें':'View All Brands');
+  if(bOpen) setTimeout(()=>g.scrollIntoView({behavior:'smooth',block:'start'}),100);
+}
+
+/* ===== CHAT ===== */
+const CTX=`You are the friendly AI assistant for Anand Trades, a wholesale general store.
+Owner: Mohan Chaudhary (Call only: +91 98354 35228). WhatsApp/Orders: Satyam Anand (+91 72094 90697).
+Opened: 2026. Location: Front of New Style Mall, Patel Chowk, Dhabouli, Uttar Pradesh.
+WhatsApp Chat: https://wa.me/917209490697
+WhatsApp Channel (updates & offers): https://whatsapp.com/channel/0029Vb8GmmwEKyZCW1sEvq2q
+Email: anandtrades.info@gmail.com
+Map/Directions: https://maps.app.goo.gl/BEmPcs9hfGyRfpqp7
+UPI Payment: 7209490697@upi (PhonePe, GPay, Paytm all accepted).
+Timings: Mon-Sat 8AM-9PM, Sunday 9AM-2PM.
+Products: Grocery (rice, wheat, dal, oil, spices, tea), FMCG (Surf Excel, Ariel, Colgate, Dettol), Chocolates (Dairy Milk, KitKat, 5 Star, Munch, Eclairs), Snacks (Kurkure, Lays, Uncle Chips, Parle-G, namkeen), Beverages (Pepsi, Coke, Sprite, juices, water), Personal Care (shampoo, soap, toothpaste), Household (agarbatti, phenyl, brooms), Tobacco (Gold Flake cigarettes, Classic, Wills, Vimal chewing tobacco, Rajnigandha pan masala, gutka, bidi), Baby (baby food, diapers, powder), Stationery.
+Brands: ITC, HUL, P&G, Cadbury, Britannia, Parle, Dabur, Patanjali, Emami, Marico, Amul, MDH, Everest, PepsiCo, Coca-Cola, Nestle, Vimal, Rajnigandha.
+Services: Wholesale bulk orders, home delivery within 10km for bulk, WhatsApp ordering, UPI payments, credit for retailers.
+Contact guidance: For WhatsApp/orders give +91 72094 90697 (Satyam Anand) & wa.me/917209490697. For calls give +91 98354 35228 (Mohan Chaudhary, call only).
+Reply in same language user writes (Hindi/English). Be warm, concise (2-4 sentences), use emojis. Never state specific prices, say to call for rates.`;
+
+async function sendMsg(){
+  const inp=document.getElementById('cinput');
+  const sb=document.getElementById('sbtn');
+  const txt=inp.value.trim(); if(!txt) return;
+  addMsg('u','👤',txt); inp.value=''; sb.disabled=true;
+  const tid=addTyping();
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:CTX,messages:[{role:'user',content:txt}]})});
+    rmTyping(tid);
+    const data=await res.json();
+    addMsg('b','🏪',data.content?.[0]?.text||'Please call +91 98354 35228!');
+  }catch(e){
+    rmTyping(tid);
+    addMsg('b','🏪','⚠️ Network error. Please call: +91 98354 35228');
+  }
+  sb.disabled=false; inp.focus();
+}
+
+function addMsg(role,av,txt){
+  const c=document.getElementById('msgs');
+  const d=document.createElement('div');
+  d.className='msg '+role;
+  d.innerHTML=`<div class="mav">${av}</div><div class="mbub">${txt.replace(/\n/g,'<br>')}</div>`;
+  c.appendChild(d); c.scrollTop=c.scrollHeight;
+}
+function addTyping(){
+  const c=document.getElementById('msgs');
+  const id='ty'+Date.now();
+  const d=document.createElement('div');
+  d.className='msg b'; d.id=id;
+  d.innerHTML='<div class="mav">🏪</div><div class="mbub"><div class="tdots"><span></span><span></span><span></span></div></div>';
+  c.appendChild(d); c.scrollTop=c.scrollHeight; return id;
+}
+function rmTyping(id){const e=document.getElementById(id);if(e)e.remove();}
+
+/* ===== UPI DEEP LINK ===== */
+function openUPI(e, appLink){
+  e.preventDefault();
+  const genericUPI = 'upi://pay?pa=7209490697@upi&pn=Anand+Trades&tn=Order+Payment&cu=INR';
+  // Try app-specific link; if not handled, fall back to generic upi://
+  const iframe = document.createElement('iframe');
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
+  iframe.src = appLink;
+  setTimeout(()=>{
+    document.body.removeChild(iframe);
+    // Also try generic as backup via location
+  }, 300);
+  // Primary: try direct navigation
+  window.location.href = appLink;
+  // Fallback: if app not installed, generic UPI opens chooser
+  setTimeout(()=>{ window.location.href = genericUPI; }, 1500);
+}
+
+/* ===== SHARE STORE ===== */
+function shareStore(){
+  const url = window.location.href;
+  const title = 'Anand Trades – Wholesale General Store';
+  const text = lang==='hi'
+    ? '🏪 आनंद ट्रेड्स – थोक किराना स्टोर, पटेल चौक, धबौली। थोक दामों पर सब कुछ! +91 72094 90697'
+    : '🏪 Anand Trades – Wholesale General Store, Patel Chowk, Dhabouli. Best bulk prices! +91 72094 90697';
+  if(navigator.share){
+    navigator.share({title, text, url}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(url+'\n'+text).then(()=>{
+      const btn = document.getElementById('share-btn-lbl');
+      const orig = btn.textContent;
+      btn.textContent = '✓ Copied!';
+      setTimeout(()=>btn.textContent=orig, 2200);
+    }).catch(()=>alert(text));
+  }
+}
+
+/* Auto-hide WA pill after 5s */
+setTimeout(()=>{
+  const pill = document.getElementById('wa-pill-lbl');
+  if(pill) pill.style.cssText='opacity:0;transition:opacity 0.6s;pointer-events:none;';
+}, 5000);
+function qAsk(btn){
+  const q=lang==='hi'?btn.getAttribute('data-hq'):btn.getAttribute('data-eq');
+  document.getElementById('cinput').value=q; sendMsg();
+}
+</script>
+<!-- FLOATING WHATSAPP + SHARE CLUSTER -->
+<div class="float-cluster">
+  <!-- Share store link -->
+  <button class="float-share-btn" onclick="shareStore()" id="share-store-btn">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+    <span id="share-btn-lbl">Share Store</span>
+  </button>
+
+  <!-- WhatsApp order button -->
+  <div class="float-wa-wrap">
+    <div class="float-wa-pill" id="wa-pill-lbl">Order on WhatsApp 🛒</div>
+    <a class="float-wa-btn" href="https://wa.me/917209490697?text=Namaste%2C%20I%20want%20to%20order%20from%20Anand%20Trades..." target="_blank" rel="noopener" title="Order on WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.025.507 3.934 1.395 5.604L0 24l6.545-1.371A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.032-1.388l-.36-.214-3.733.978.997-3.648-.235-.374A9.791 9.791 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
